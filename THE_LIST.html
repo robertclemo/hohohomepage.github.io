@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎄 MERRY CHRISTMAS 1999 🎄</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive;
+            background: #ff0000;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.1) 35px, rgba(255,255,255,.1) 70px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(0,255,0,.1) 35px, rgba(0,255,0,.1) 70px);
+            color: #00ff00;
+            overflow-x: hidden;
+        }
+
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            z-index: 9999;
+            user-select: none;
+            cursor: default;
+            animation: fall linear infinite;
+            color: white;
+            font-size: 1.5em;
+            text-shadow: 0 0 5px #fff;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        header {
+            background: linear-gradient(90deg, #ff0000, #00ff00, #ff0000);
+            border: 5px solid #ffff00;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 0 20px #ffff00;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #ffff00;
+            text-shadow: 3px 3px #ff0000, 6px 6px #00ff00;
+            animation: bounce 1s infinite;
+            text-decoration: underline;
+        }
+
+        .blink {
+            animation: blink 0.5s infinite;
+        }
+
+        .marquee-container {
+            background: #00ff00;
+            border: 3px dashed #ff0000;
+            padding: 10px;
+            overflow: hidden;
+        }
+
+        marquee {
+            color: #ff0000;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        .content-box {
+            background: #ffffff;
+            border: 5px ridge #ff0000;
+            padding: 2rem;
+            margin: 1rem 0;
+            box-shadow: 5px 5px 0 #00ff00;
+        }
+
+        .content-box h2 {
+            color: #ff0000;
+            text-decoration: underline;
+            font-size: 2em;
+            text-align: center;
+        }
+
+        .content-box p {
+            color: #0000ff;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .gif-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .fake-gif {
+            display: inline-block;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(45deg, #ff0000, #00ff00);
+            border: 3px solid #ffff00;
+            animation: spin 2s linear infinite;
+            line-height: 150px;
+            font-size: 3em;
+        }
+
+        .counter {
+            background: #000000;
+            color: #00ff00;
+            padding: 1rem;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            border: 3px solid #00ff00;
+            margin: 1rem 0;
+        }
+
+        .guestbook {
+            background: #ffff99;
+            border: 3px double #ff0000;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .guestbook input, .guestbook textarea {
+            width: 100%;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border: 2px solid #ff0000;
+            font-family: 'Comic Sans MS', cursive;
+        }
+
+        .guestbook button {
+            background: #ff0000;
+            color: #ffff00;
+            border: 3px outset #ffff00;
+            padding: 0.5rem 2rem;
+            font-family: 'Comic Sans MS', cursive;
+            font-size: 1.2em;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .guestbook button:active {
+            border-style: inset;
+        }
+
+        .guestbook-entry {
+            background: #fff;
+            border: 2px solid #ff0000;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 5px;
+        }
+
+        .guestbook-entry .entry-name {
+            color: #ff0000;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .guestbook-entry .entry-date {
+            color: #666;
+            font-size: 0.8em;
+            font-style: italic;
+        }
+
+        .guestbook-entry .entry-message {
+            color: #0000ff;
+            margin-top: 0.5rem;
+        }
+
+        .guestbook-entry .entry-email {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        footer {
+            background: #00ff00;
+            color: #ff0000;
+            text-align: center;
+            padding: 2rem;
+            border-top: 5px solid #ffff00;
+            font-weight: bold;
+        }
+
+        .webring {
+            background: #ffff00;
+            border: 3px solid #ff0000;
+            padding: 1rem;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .under-construction {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .under-construction img {
+            width: 200px;
+        }
+
+        a {
+            color: #0000ff;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        a:visited {
+            color: #800080;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        /* Overlay styles */
+        #keys-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999999;
+            overflow: hidden;
+        }
+        
+        .keys-visual {
+            position: absolute;
+            font-size: 4em;
+            font-weight: bold;
+            pointer-events: none;
+            animation: keys-float-away 1.5s ease-out forwards;
+            z-index: 999999;
+        }
+        
+        @keyframes keys-float-away {
+            0% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--dx), var(--dy)) scale(2) rotate(var(--rotation));
+                opacity: 0;
+            }
+        }
+        
+        .keys-ripple {
+            position: absolute;
+            border: 4px solid;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: keys-ripple-animation 1s ease-out forwards;
+            z-index: 999999;
+        }
+        
+        @keyframes keys-ripple-animation {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+            100% {
+                width: 250px;
+                height: 250px;
+                opacity: 0;
+            }
+        }
+        
+        .keys-particle {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: keys-particle-burst 1.2s ease-out forwards;
+            z-index: 999999;
+        }
+        
+        @keyframes keys-particle-burst {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--px), var(--py)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        .note-display {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 0, 0.9);
+            color: #ff0000;
+            padding: 1rem 2rem;
+            border: 3px solid #ff0000;
+            border-radius: 10px;
+            font-size: 1.5em;
+            font-weight: bold;
+            z-index: 1000000;
+            box-shadow: 0 0 20px rgba(255, 255, 0, 0.8);
+        }
+
+        .song-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 0, 0.95);
+            border: 4px ridge #ff0000;
+            padding: 1rem;
+            border-radius: 10px;
+            z-index: 1000000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+        }
+
+        .song-selector label {
+            color: #ff0000;
+            font-weight: bold;
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px #000;
+        }
+
+        .song-selector select {
+            width: 100%;
+            padding: 0.5rem;
+            font-family: 'Comic Sans MS', cursive;
+            font-size: 1em;
+            border: 3px solid #ff0000;
+            background: #fff;
+            color: #ff0000;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .song-selector select:hover {
+            background: #ffffe0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Snowflakes -->
+    <script>
+        for(let i = 0; i < 30; i++) {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.innerHTML = ['❄', '❅', '❆'][Math.floor(Math.random() * 3)];
+            snowflake.style.left = Math.random() * 100 + '%';
+            snowflake.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            snowflake.style.animationDelay = Math.random() * 5 + 's';
+            document.body.appendChild(snowflake);
+        }
+    </script>
+
+    <header>
+        <h1>🎅 <span class="blink">WELCOME TO MY</span> 🎅</h1>
+        <h1>CHRISTMAS HOME PAGE!</h1>
+        <p style="font-size: 1.5em; color: white; text-shadow: 2px 2px #000;">Est. 1999</p>
+    </header>
+
+    <div class="marquee-container">
+        <marquee>🎄 MERRY CHRISTMAS! 🎁 HAPPY HOLIDAYS! 🔔 SEASON'S GREETINGS! ⛄ HO HO HO! 🎄</marquee>
+    </div>
+
+    <div class="container">
+        <div class="counter">
+            <p>👁️ VISITOR NUMBER: <span class="blink">0000042069</span> 👁️</p>
+            <p style="font-size: 0.8em;">You are visitor #42069 since December 1, 1999!</p>
+        </div>
+
+        <div class="content-box">
+            <h2>🎄 WELCOME! 🎄</h2>
+            <p class="center">
+                Welcome to the <span class="blink">COOLEST</span> Christmas page on the World Wide Web!
+                This page is best viewed in Netscape Navigator 4.0 at 800x600 resolution!
+            </p>
+            <p class="center" style="margin-top: 1rem; font-size: 1.5em; color: #ff0000;">
+                <strong>⌨️ PRESS ANY KEY TO PLAY <span id="songName1">JINGLE BELLS</span>! ⌨️</strong>
+            </p>
+            <p class="center" style="margin-top: 0.5rem;">
+                Each key you press plays the next note! Pick a song from the menu and play it note by note!
+            </p>
+        </div>
+
+        <div class="gif-container">
+            <div class="fake-gif">🎅</div>
+            <div class="fake-gif">🎄</div>
+            <div class="fake-gif">🎁</div>
+        </div>
+
+        <div class="content-box">
+            <h2>📜 CHRISTMAS FACTS! 📜</h2>
+            <p>
+                ⭐ Did you know? Santa Claus lives at the North Pole!<br>
+                ⭐ Rudolph the Red-Nosed Reindeer was created in 1939!<br>
+                ⭐ The first Christmas tree was decorated in Germany!<br>
+                ⭐ Candy canes were invented in the 1600s!<br>
+                ⭐ This website was made with <span class="blink">LOVE</span> and <span class="blink">HTML</span>!
+            </p>
+        </div>
+
+        <div class="under-construction center">
+            <p style="font-size: 2em; color: #ffff00; text-shadow: 2px 2px #ff0000;">
+                🚧 UNDER CONSTRUCTION 🚧
+            </p>
+            <p style="font-size: 1.5em; color: #ffffff;">
+                More cool stuff coming soon!
+            </p>
+        </div>
+
+        <div class="guestbook">
+            <h2 style="color: #ff0000; text-align: center;">📝 SIGN MY GUESTBOOK! 📝</h2>
+            <p style="text-align: center; color: #0000ff;">Leave me a message!</p>
+            <form id="guestbookForm">
+                <input type="text" id="guestName" placeholder="Your Name" required>
+                <input type="email" id="guestEmail" placeholder="Your Email (optional)">
+                <textarea rows="4" id="guestMessage" placeholder="Your Message" required></textarea>
+                <div class="center">
+                    <button type="submit"><a href="THE_LIST.html">SIGN GUESTBOOK!</a></button>
+                </div>
+            </form>
+            <div id="guestbookEntries" style="margin-top: 2rem;">
+                <h3 style="color: #ff0000; text-align: center; margin-bottom: 1rem;">📖 GUESTBOOK ENTRIES 📖</h3>
+                <div id="entriesList"></div>
+            </div>
+        </div>
+
+        <div class="webring">
+            <p style="color: #ff0000; font-size: 1.2em;">
+                <strong>🔗 CHRISTMAS WEBRING 🔗</strong>
+            </p>
+            <p>
+                <a href="#">&lt;&lt; Previous</a> | 
+                <a href="#">Random</a> | 
+                <a href="#">Next &gt;&gt;</a>
+            </p>
+        </div>
+
+        <div class="content-box center">
+            <h2>🎵 CHRISTMAS MUSIC 🎵</h2>
+            <p>
+                Press keys to play <span id="songName2">Jingle Bells</span> one note at a time!<br>
+                Use the dropdown menu in the top-right to select different songs!
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9em;">
+                (Sound requires a compatible browser and may not work on all systems)
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 1999 My Christmas Page</p>
+        <p>Email me at: <span class="blink">santa@northpole.com</span></p>
+        <p style="margin-top: 1rem;">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='31'%3E%3Crect fill='%23000' width='88' height='31'/%3E%3Ctext x='44' y='20' font-family='Arial' font-size='14' fill='%23fff' text-anchor='middle'%3EMade with%3C/text%3E%3Ctext x='44' y='28' font-family='Arial' font-size='8' fill='%23f00' text-anchor='middle'%3E❤️ HTML%3C/text%3E%3C/svg%3E" alt="Made with HTML">
+        </p>
+        <p style="margin-top: 0.5rem; font-size: 0.8em;">
+            Best viewed in Netscape Navigator | Please sign my guestbook!
+        </p>
+    </footer>
+
+    <div class="song-selector">
+        <label for="songSelect">🎵 Choose Song: 🎵</label>
+        <select id="songSelect">
+            <option value="jingleBells">Jingle Bells</option>
+            <option value="deckTheHalls">Deck the Halls</option>
+            <option value="joyToTheWorld">Joy to the World</option>
+            <option value="weWishYou">We Wish You a Merry Christmas</option>
+            <option value="silentNight">Silent Night</option>
+            <option value="ohChristmasTree">O Christmas Tree</option>
+        </select>
+    </div>
+
+    <div class="note-display" id="noteDisplay">🎵 Press any key! 🎵</div>
+
+    <div id="keys-overlay"></div>
+
+    <script>
+        // Christmas songs in musical notation (frequencies in Hz)
+        // Note: All these songs are public domain!
+        
+        const songs = {
+            jingleBells: {
+                name: "Jingle Bells",
+                notes: [
+                    329.63, 329.63, 329.63,  // E E E
+                    329.63, 329.63, 329.63,  // E E E
+                    329.63, 392.00, 261.63, 293.66, 329.63,  // E G C D E
+                    349.23, 349.23, 349.23, 349.23,  // F F F F
+                    349.23, 329.63, 329.63, 329.63, 329.63,  // F E E E E
+                    329.63, 293.66, 293.66, 329.63,  // E D D E
+                    293.66,  // D
+                    392.00   // G
+                ],
+                noteNames: [
+                    'E', 'E', 'E',
+                    'E', 'E', 'E',
+                    'E', 'G', 'C', 'D', 'E',
+                    'F', 'F', 'F', 'F',
+                    'F', 'E', 'E', 'E', 'E',
+                    'E', 'D', 'D', 'E',
+                    'D',
+                    'G'
+                ]
+            },
+            deckTheHalls: {
+                name: "Deck the Halls",
+                notes: [
+                    392.00, 349.23, 329.63, 293.66,  // G F E D
+                    261.63, 293.66, 329.63, 261.63,  // C D E C
+                    293.66, 329.63, 349.23, 293.66,  // D E F D
+                    329.63, 293.66, 261.63,  // E D C
+                    392.00, 392.00, 392.00, 349.23, 392.00,  // G G G F G
+                    349.23, 329.63, 293.66, 261.63  // F E D C
+                ],
+                noteNames: [
+                    'G', 'F', 'E', 'D',
+                    'C', 'D', 'E', 'C',
+                    'D', 'E', 'F', 'D',
+                    'E', 'D', 'C',
+                    'G', 'G', 'G', 'F', 'G',
+                    'F', 'E', 'D', 'C'
+                ]
+            },
+            joyToTheWorld: {
+                name: "Joy to the World",
+                notes: [
+                    523.25, 493.88, 466.16, 440.00,  // C B A G
+                    392.00, 349.23, 329.63, 329.63, 329.63,  // G F E E E
+                    329.63, 349.23, 392.00, 392.00,  // E F G G
+                    392.00, 440.00, 466.16, 466.16, 466.16,  // G A B B B
+                    523.25, 523.25, 493.88, 466.16,  // C C B A
+                    440.00, 392.00, 523.25  // G G C
+                ],
+                noteNames: [
+                    'C', 'B', 'A', 'G',
+                    'G', 'F', 'E', 'E', 'E',
+                    'E', 'F', 'G', 'G',
+                    'G', 'A', 'B', 'B', 'B',
+                    'C', 'C', 'B', 'A',
+                    'G', 'G', 'C'
+                ]
+            },
+            weWishYou: {
+                name: "We Wish You a Merry Christmas",
+                notes: [
+                    293.66, 349.23, 349.23, 392.00,  // D F F G
+                    349.23, 293.66, 261.63, 261.63,  // F D C C
+                    261.63, 293.66, 329.63, 349.23,  // C D E F
+                    293.66, 392.00, 440.00, 440.00,  // D G A A
+                    466.16, 440.00, 392.00, 349.23,  // B A G F
+                    293.66, 293.66, 392.00, 293.66,  // D D G D
+                    329.63, 261.63  // E C
+                ],
+                noteNames: [
+                    'D', 'F', 'F', 'G',
+                    'F', 'D', 'C', 'C',
+                    'C', 'D', 'E', 'F',
+                    'D', 'G', 'A', 'A',
+                    'B', 'A', 'G', 'F',
+                    'D', 'D', 'G', 'D',
+                    'E', 'C'
+                ]
+            },
+            silentNight: {
+                name: "Silent Night",
+                notes: [
+                    392.00, 440.00, 392.00,  // G A G
+                    329.63, 329.63,  // E E
+                    392.00, 440.00, 392.00,  // G A G
+                    329.63, 329.63,  // E E
+                    523.25, 523.25,  // C C
+                    466.16, 466.16,  // B B
+                    392.00, 392.00,  // G G
+                    440.00, 440.00, 392.00,  // A A G
+                    329.63, 293.66  // E D
+                ],
+                noteNames: [
+                    'G', 'A', 'G',
+                    'E', 'E',
+                    'G', 'A', 'G',
+                    'E', 'E',
+                    'C', 'C',
+                    'B', 'B',
+                    'G', 'G',
+                    'A', 'A', 'G',
+                    'E', 'D'
+                ]
+            },
+            ohChristmasTree: {
+                name: "O Christmas Tree",
+                notes: [
+                    261.63, 349.23, 349.23, 349.23,  // C F F F
+                    392.00, 392.00, 392.00,  // G G G
+                    440.00, 392.00, 349.23, 392.00,  // A G F G
+                    349.23, 293.66, 293.66,  // F D D
+                    261.63, 349.23, 349.23, 349.23,  // C F F F
+                    392.00, 392.00, 392.00,  // G G G
+                    440.00, 392.00, 349.23, 392.00,  // A G F G
+                    349.23, 261.63  // F C
+                ],
+                noteNames: [
+                    'C', 'F', 'F', 'F',
+                    'G', 'G', 'G',
+                    'A', 'G', 'F', 'G',
+                    'F', 'D', 'D',
+                    'C', 'F', 'F', 'F',
+                    'G', 'G', 'G',
+                    'A', 'G', 'F', 'G',
+                    'F', 'C'
+                ]
+            }
+        };
+
+        let currentSong = 'jingleBells';
+        let currentNoteIndex = 0;
+
+        const overlay = document.getElementById('keys-overlay');
+        const noteDisplay = document.getElementById('noteDisplay');
+        const songSelect = document.getElementById('songSelect');
+        
+        // Handle song selection
+        songSelect.addEventListener('change', function() {
+            currentSong = this.value;
+            currentNoteIndex = 0;
+            
+            // Update all song name displays
+            const songName = songs[currentSong].name;
+            document.getElementById('songName1').textContent = songName.toUpperCase();
+            document.getElementById('songName2').textContent = songName;
+            
+            noteDisplay.textContent = `🎵 Now playing: ${songName}! 🎵`;
+            setTimeout(() => {
+                noteDisplay.textContent = '🎵 Press any key! 🎵';
+            }, 2000);
+        });
+        
+        // Christmas colors!
+        const christmasColors = [
+            '#ff0000', '#00ff00', '#ffff00', '#ffffff',
+            '#ff6b6b', '#4ecdc4', '#ffd700', '#ff1493'
+        ];
+        
+        // Audio context
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        const audioContext = new AudioContext();
+        
+        function playJingleBellsNote() {
+            const song = songs[currentSong];
+            const frequency = song.notes[currentNoteIndex];
+            const noteName = song.noteNames[currentNoteIndex];
+            
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.value = frequency;
+            oscillator.type = 'triangle'; // More bell-like sound
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.6);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.6);
+            
+            // Update note display
+            noteDisplay.textContent = `🎵 ${song.name} - Note #${currentNoteIndex + 1}: ${noteName} 🎵`;
+            
+            // Advance to next note
+            currentNoteIndex = (currentNoteIndex + 1) % song.notes.length;
+            
+            // Show completion message
+            if (currentNoteIndex === 0) {
+                noteDisplay.textContent = `🎉 ${song.name} COMPLETE! Starting over... 🎉`;
+                setTimeout(() => {
+                    noteDisplay.textContent = '🎵 Press any key! 🎵';
+                }, 2000);
+            }
+            
+            return noteName;
+        }
+        
+        function createRipple(x, y, color) {
+            const ripple = document.createElement('div');
+            ripple.className = 'keys-ripple';
+            ripple.style.left = (x - 125) + 'px';
+            ripple.style.top = (y - 125) + 'px';
+            ripple.style.borderColor = color;
+            overlay.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 1000);
+        }
+        
+        function createParticles(x, y, color) {
+            const particleCount = 12;
+            const christmasIcons = ['❄', '🎄', '🎁', '⭐', '🔔', '🎅'];
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'keys-particle';
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.background = color;
+                
+                // Some particles are Christmas icons
+                if (Math.random() > 0.5) {
+                    particle.innerHTML = christmasIcons[Math.floor(Math.random() * christmasIcons.length)];
+                    particle.style.background = 'transparent';
+                    particle.style.fontSize = '1.5em';
+                    particle.style.width = '20px';
+                    particle.style.height = '20px';
+                }
+                
+                const angle = (Math.PI * 2 * i) / particleCount;
+                const distance = 60 + Math.random() * 60;
+                const px = Math.cos(angle) * distance;
+                const py = Math.sin(angle) * distance;
+                
+                particle.style.setProperty('--px', px + 'px');
+                particle.style.setProperty('--py', py + 'px');
+                
+                overlay.appendChild(particle);
+                setTimeout(() => particle.remove(), 1200);
+            }
+        }
+        
+        function createKeyVisual(noteName, x, y) {
+            const keyVisual = document.createElement('div');
+            keyVisual.className = 'keys-visual';
+            
+            // Show musical note name or Christmas icon
+            const christmasIcons = ['🎄', '🎅', '⛄', '🎁', '🔔', '⭐', '❄️'];
+            keyVisual.textContent = Math.random() > 0.3 ? noteName : christmasIcons[Math.floor(Math.random() * christmasIcons.length)];
+            
+            keyVisual.style.left = x + 'px';
+            keyVisual.style.top = y + 'px';
+            
+            const color = christmasColors[Math.floor(Math.random() * christmasColors.length)];
+            keyVisual.style.color = color;
+            keyVisual.style.textShadow = `0 0 10px ${color}, 2px 2px 8px rgba(0, 0, 0, 0.5)`;
+            
+            const dx = (Math.random() - 0.5) * 300;
+            const dy = -150 - Math.random() * 150;
+            const rotation = (Math.random() - 0.5) * 720;
+            
+            keyVisual.style.setProperty('--dx', dx + 'px');
+            keyVisual.style.setProperty('--dy', dy + 'px');
+            keyVisual.style.setProperty('--rotation', rotation + 'deg');
+            
+            overlay.appendChild(keyVisual);
+            
+            setTimeout(() => keyVisual.remove(), 1500);
+            
+            return color;
+        }
+        
+        function handleKeyPress(event) {
+            // Resume audio context on first interaction
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+            
+            // Random position
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            
+            // Play the next Jingle Bells note and get the note name
+            const noteName = playJingleBellsNote();
+            
+            // Create visual elements
+            const color = createKeyVisual(noteName, x, y);
+            createRipple(x, y, color);
+            createParticles(x, y, color);
+        }
+        
+        // Listen for key presses
+        document.addEventListener('keydown', handleKeyPress);
+        
+        // Guestbook functionality
+        const guestbookForm = document.getElementById('guestbookForm');
+        const entriesList = document.getElementById('entriesList');
+        
+        // Load existing entries from localStorage
+        function loadGuestbookEntries() {
+            const entries = JSON.parse(localStorage.getItem('guestbookEntries') || '[]');
+            entriesList.innerHTML = '';
+            
+            if (entries.length === 0) {
+                entriesList.innerHTML = '<p style="text-align: center; color: #666;">No entries yet! Be the first to sign!</p>';
+                return;
+            }
+            
+            // Display entries in reverse order (newest first)
+            entries.reverse().forEach(entry => {
+                const entryDiv = document.createElement('div');
+                entryDiv.className = 'guestbook-entry';
+                
+                entryDiv.innerHTML = `
+                    <div class="entry-name">👤 ${entry.name}</div>
+                    ${entry.email ? `<div class="entry-email">📧 ${entry.email}</div>` : ''}
+                    <div class="entry-date">📅 ${entry.date}</div>
+                    <div class="entry-message">${entry.message}</div>
+                `;
+                
+                entriesList.appendChild(entryDiv);
+            });
+        }
+        
+        // Handle form submission
+        guestbookForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('guestName').value;
+            const email = document.getElementById('guestEmail').value;
+            const message = document.getElementById('guestMessage').value;
+            
+            // Get existing entries
+            const entries = JSON.parse(localStorage.getItem('guestbookEntries') || '[]');
+            
+            // Add new entry
+            const newEntry = {
+                name: name,
+                email: email,
+                message: message,
+                date: new Date().toLocaleString()
+            };
+            
+            entries.push(newEntry);
+            
+            // Save to localStorage
+            localStorage.setItem('guestbookEntries', JSON.stringify(entries));
+            
+            // Clear form
+            guestbookForm.reset();
+            
+            // Reload entries
+            loadGuestbookEntries();
+            
+            // Show success message
+            alert('🎄 Thanks for signing my guestbook! 🎄');
+        });
+        
+        // Load entries on page load
+        loadGuestbookEntries();
+        
+        console.log('🎄 Tacky 90s Christmas Page loaded! Press keys to play Christmas songs! 🎵');
+    </script>
+</body>
+</html>
