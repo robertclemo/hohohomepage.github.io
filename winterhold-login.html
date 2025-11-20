@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WINTERHOLD SECURE LOGIN</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0a0a;
+            color: #00ff00;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        .classified-banner {
+            background: #ff0000;
+            color: #ffffff;
+            text-align: center;
+            padding: 0.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border-bottom: 3px solid #ffffff;
+        }
+
+        .header {
+            background: #1a1a1a;
+            border-bottom: 2px solid #00ff00;
+            padding: 1.5rem 2rem;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .seal {
+            width: 80px;
+            height: 80px;
+            border: 3px solid #00ff00;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            background: #000;
+        }
+
+        .header-text h1 {
+            font-size: 1.5em;
+            color: #00ff00;
+            margin-bottom: 0.3rem;
+        }
+
+        .header-text p {
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        .main-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .login-box {
+            background: #1a1a1a;
+            border: 2px solid #00ff00;
+            padding: 3rem;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+
+        .login-box h2 {
+            color: #00ff00;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 1.3em;
+            letter-spacing: 1px;
+        }
+
+        .warning {
+            background: #2a1a1a;
+            border: 1px solid #ff0000;
+            color: #ff6666;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            font-size: 0.85em;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #00ff00;
+            margin-bottom: 0.5rem;
+            font-size: 0.9em;
+        }
+
+        .form-group input {
+            width: 100%;
+            background: #000;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            padding: 0.75rem;
+            font-family: 'Courier New', monospace;
+            font-size: 1em;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #00ff00;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: #003300;
+            border: 2px solid #00ff00;
+            color: #00ff00;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            cursor: pointer;
+            font-weight: bold;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #004400;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
+        }
+
+        .submit-btn:active {
+            background: #00ff00;
+            color: #000;
+        }
+
+        footer {
+            background: #1a1a1a;
+            border-top: 2px solid #00ff00;
+            padding: 1rem;
+            text-align: center;
+            color: #666;
+            font-size: 0.8em;
+        }
+
+        .system-info {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            padding: 0.5rem;
+            margin-top: 1.5rem;
+            font-size: 0.75em;
+            color: #666;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .blink {
+            animation: blink 1s infinite;
+        }
+
+        .access-level {
+            display: inline-block;
+            background: #ff0000;
+            color: #fff;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-left: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="classified-banner">
+        ⚠️ CLASSIFIED - TOP SECRET / SCI - WINTERHOLD EYES ONLY ⚠️
+    </div>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="seal">❄️</div>
+            <div class="header-text">
+                <h1>WINTERHOLD MILITARY INSTALLATION</h1>
+                <p>Arctic Operations Command | Dept. of Holiday Defense</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="login-box">
+            <h2>SECURE ACCESS PORTAL <span class="access-level blink">LEVEL 5</span></h2>
+            
+            <div class="warning">
+                <strong>⚠️ AUTHORIZED PERSONNEL ONLY ⚠️</strong><br><br>
+                This system is restricted to authorized users for official use only. 
+                Unauthorized access or use of this system is strictly prohibited and 
+                may result in disciplinary action and/or criminal prosecution under 
+                the Holiday Security Act of 1957 (amended 1982).
+            </div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">USER ID:</label>
+                    <input type="text" id="username" name="username" autocomplete="off" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">ACCESS CODE:</label>
+                    <input type="password" id="password" name="password" autocomplete="off" required>
+                </div>
+
+                <button type="submit" class="submit-btn">ACCESS SYSTEM</button>
+
+                <div class="system-info">
+                    SYSTEM: WHOLD-SEC-2024 v8.7.2<br>
+                    NODE: NP-CORE-01<br>
+                    ENCRYPTION: AES-512 / RSA-4096<br>
+                    STATUS: <span style="color: #00ff00;">● OPERATIONAL</span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>WINTERHOLD MILITARY INSTALLATION | 90° 0' 0" N</p>
+        <p>ARCTIC OPERATIONS COMMAND - DEPARTMENT OF HOLIDAY DEFENSE</p>
+        <p style="margin-top: 0.5rem; color: #444;">
+            For technical support contact: <span style="color: #666;">sysadmin@winterhold.mil</span>
+        </p>
+    </footer>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Accept any input and redirect to main portal
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username && password) {
+                // Show brief "authenticating" effect
+                const btn = document.querySelector('.submit-btn');
+                btn.textContent = 'AUTHENTICATING...';
+                btn.style.background = '#004400';
+                
+                setTimeout(() => {
+                    window.location.href = 'winterhold-portal.html';
+                }, 1000);
+            }
+        });
+
+        // Prevent inspect element detection (aesthetic only)
+        console.log('%cWINTERHOLD SECURE SYSTEM', 'color: #00ff00; font-size: 20px; font-weight: bold; background: #000; padding: 10px;');
+        console.log('%cUnauthorized access is prohibited', 'color: #ff0000; font-size: 14px;');
+    </script>
+</body>
+</html>
