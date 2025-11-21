@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROJECT KRAMPUS - WINTERHOLD</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0a0a;
+            color: #00ff00;
+            line-height: 1.6;
+        }
+
+        .classified-banner {
+            background: #ff0000;
+            color: #ffffff;
+            text-align: center;
+            padding: 0.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border-bottom: 3px solid #ffffff;
+        }
+
+        .header {
+            background: #1a1a1a;
+            border-bottom: 2px solid #00ff00;
+            padding: 1rem 2rem;
+        }
+
+        .header-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header-content h1 {
+            color: #00ff00;
+            font-size: 1.5em;
+            margin-bottom: 0.5rem;
+        }
+
+        .back-link {
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        .back-link:hover {
+            color: #00ff00;
+        }
+
+        .document-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem 2rem 2rem;
+        }
+
+        .doc-header-box {
+            background: #1a1a1a;
+            border: 2px solid #ff0000;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .doc-meta {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            font-size: 0.9em;
+        }
+
+        .meta-item {
+            color: #888;
+        }
+
+        .meta-item strong {
+            color: #00ff00;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .section {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section h2 {
+            color: #00ff00;
+            font-size: 1.2em;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.5rem;
+        }
+
+        .section h3 {
+            color: #00ff00;
+            font-size: 1em;
+            margin: 1.5rem 0 0.75rem 0;
+        }
+
+        .section p {
+            color: #888;
+            margin-bottom: 1rem;
+        }
+
+        .redacted {
+            background: #000;
+            color: #000;
+            padding: 0.1rem 0.5rem;
+            cursor: help;
+            position: relative;
+            display: inline-block;
+            border: 1px solid #333;
+        }
+
+        .redacted:hover::after {
+            content: '[REDACTED]';
+            position: absolute;
+            background: #ff0000;
+            color: #fff;
+            padding: 0.2rem 0.5rem;
+            top: -2rem;
+            left: 0;
+            white-space: nowrap;
+            font-size: 0.8em;
+            z-index: 10;
+        }
+
+        .warning-box {
+            background: #2a1a1a;
+            border: 2px solid #ff0000;
+            padding: 1rem;
+            margin: 1rem 0;
+            color: #ff6666;
+        }
+
+        .warning-box strong {
+            color: #ff0000;
+        }
+
+        .schematic {
+            background: #0a0a0a;
+            border: 2px solid #00ff00;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            font-family: monospace;
+            color: #00ff00;
+            line-height: 1.4;
+        }
+
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .specs-table th,
+        .specs-table td {
+            border: 1px solid #333;
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        .specs-table th {
+            background: #0a0a0a;
+            color: #00ff00;
+            font-weight: bold;
+        }
+
+        .specs-table td {
+            color: #888;
+        }
+
+        .classified-stamp {
+            color: #ff0000;
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            margin: 2rem 0;
+            transform: rotate(-5deg);
+            opacity: 0.7;
+        }
+
+        footer {
+            background: #1a1a1a;
+            border-top: 2px solid #00ff00;
+            padding: 1rem;
+            text-align: center;
+            color: #666;
+            font-size: 0.8em;
+            margin-top: 2rem;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .blink {
+            animation: blink 1s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="classified-banner blink">
+        ⚠️ TOP SECRET / SCI - WINTERHOLD CLEARANCE REQUIRED ⚠️
+    </div>
+
+    <div class="header">
+        <div class="header-content">
+            <a href="https://robertclemo.github.io/hohohomepage/winterhold-portal.html" class="back-link">← BACK TO PORTAL</a>
+            <h1>PROJECT KRAMPUS: ANTI-ENTITY WEAPONS SYSTEMS</h1>
+        </div>
+    </div>
+
+    <div class="document-container">
+        <div class="doc-header-box">
+            <div class="doc-meta">
+                <div class="meta-item">
+                    <strong>DOCUMENT ID:</strong>
+                    WH-2024-K-088
+                </div>
+                <div class="meta-item">
+                    <strong>CLASSIFICATION:</strong>
+                    TOP SECRET / SCI
+                </div>
+                <div class="meta-item">
+                    <strong>LAST UPDATED:</strong>
+                    2024-12-15 18:42:17 UTC
+                </div>
+                <div class="meta-item">
+                    <strong>AUTHOR:</strong>
+                    Dr. <span class="redacted">REDACTED</span>, Weapons Development Division
+                </div>
+                <div class="meta-item">
+                    <strong>DISTRIBUTION:</strong>
+                    WINTERHOLD EYES ONLY
+                </div>
+                <div class="meta-item">
+                    <strong>REVISION:</strong>
+                    8.2.4
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>I. EXECUTIVE SUMMARY</h2>
+            <p>
+                Since the <span class="redacted">████████</span> incident of December 2019, Winterhold Command has recognized 
+                the existential threat posed by the entity designated KRM-001 (colloquially known as "Krampus"). Project KRAMPUS 
+                was initiated in January 2020 with the mandate to develop, test, and deploy effective countermeasures against 
+                hostile mythological entities.
+            </p>
+            <p>
+                This document outlines current weapons systems, tactical deployment protocols, and operational readiness status 
+                as of December 2024. Current threat assessment places KRM-001 activity at <strong style="color: #ff0000;">ELEVATED</strong> 
+                for the upcoming holiday season.
+            </p>
+            
+            <div class="warning-box">
+                <strong>⚠️ OPERATIONAL SECURITY WARNING:</strong> All personnel involved in Project KRAMPUS operations are 
+                reminded that civilian exposure to anti-entity weapons systems constitutes a Level 5 security breach. Lethal 
+                force is authorized for containment purposes.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>II. THREAT ASSESSMENT: KRM-001 "KRAMPUS"</h2>
+            
+            <h3>Entity Characteristics:</h3>
+            <table class="specs-table">
+                <tr>
+                    <th>Parameter</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Height</td>
+                    <td>2.8 - 3.2 meters (variable)</td>
+                </tr>
+                <tr>
+                    <td>Weight</td>
+                    <td>Est. 180-220 kg</td>
+                </tr>
+                <tr>
+                    <td>Primary Threat</td>
+                    <td>Physical assault, psychological warfare, child abduction</td>
+                </tr>
+                <tr>
+                    <td>Known Weaknesses</td>
+                    <td><span class="redacted">████████████</span>, blessed weapons, concentrated holiday cheer</td>
+                </tr>
+                <tr>
+                    <td>Last Confirmed Sighting</td>
+                    <td>Alpine Region, <span class="redacted">████████</span>, December 5, 2024</td>
+                </tr>
+                <tr>
+                    <td>Civilian Casualties (2024)</td>
+                    <td><span class="redacted">██</span> confirmed, <span class="redacted">███</span> suspected</td>
+                </tr>
+            </table>
+
+            <p>
+                Intelligence suggests KRM-001 operates in conjunction with <span class="redacted">██</span> allied entities, 
+                forming what analysts refer to as the "Dark Christmas Coalition." Recent surveillance indicates coordinated 
+                activity patterns suggesting a <span class="redacted">████████████████</span> planned for late December 2024.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>III. WEAPONS SYSTEMS DEVELOPMENT</h2>
+
+            <h3>A. HOARFROST-Class Defensive Platform</h3>
+            <p>
+                Primary defensive installation deployed at Winterhold perimeter. Utilizes concentrated streams of 
+                <span class="redacted">█████████████</span> to neutralize hostile entities within 500-meter engagement zone.
+            </p>
+
+            <table class="specs-table">
+                <tr>
+                    <th>Specification</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Effective Range</td>
+                    <td>500 meters (sustained fire), 750 meters (burst)</td>
+                </tr>
+                <tr>
+                    <td>Rate of Fire</td>
+                    <td>1200 rounds/minute</td>
+                </tr>
+                <tr>
+                    <td>Ammunition Type</td>
+                    <td>Blessed silver-tipped hollow points, Type-7 sanctified rounds</td>
+                </tr>
+                <tr>
+                    <td>Power Source</td>
+                    <td>Dual micro-reactors (Christmas magic/conventional)</td>
+                </tr>
+                <tr>
+                    <td>Operational Status</td>
+                    <td style="color: #00ff00;">OPERATIONAL (12/12 units active)</td>
+                </tr>
+            </table>
+
+            <div class="schematic">
+                <pre>
+╔═══════════════════════════════════════╗
+║   HOARFROST-CLASS PLATFORM (TOP)     ║
+╠═══════════════════════════════════════╣
+║                                       ║
+║         [█ TARGETING ARRAY █]        ║
+║              /    |    \              ║
+║         ████████████████████          ║
+║         ║  ROTARY CANNON  ║           ║
+║         ║   CLUSTER (4x)  ║           ║
+║         ╚══════╦══════════╝           ║
+║                ║                      ║
+║        ████████████████████           ║
+║        ║  POWER CORE (2x) ║           ║
+║        ║  BLESSED STORAGE ║           ║
+║        ╚══════════════════╝           ║
+║                                       ║
+║    [360° ENGAGEMENT CAPABILITY]      ║
+╚═══════════════════════════════════════╝
+                </pre>
+            </div>
+
+            <h3>B. TINSEL-7 Anti-Entity Munitions</h3>
+            <p>
+                Experimental ammunition developed in cooperation with the Vatican's <span class="redacted">████████████</span> 
+                division. Each round contains trace amounts of holy water, blessed silver, and <span class="redacted">████████</span> 
+                extracted from genuine Christmas spirit.
+            </p>
+
+            <div class="warning-box">
+                <strong>⚠️ HANDLING WARNING:</strong> TINSEL-7 munitions must be stored in consecrated containers. Exposure to 
+                naughty list personnel may result in <span class="redacted">████████████</span>. Antidote protocols available 
+                in Section IX.
+            </div>
+
+            <h3>C. CANDY CANE Pike Defense System</h3>
+            <p>
+                Close-quarters defensive weapon resembling oversized candy canes. Constructed from <span class="redacted">████████</span> 
+                alloy with peppermint essence core. Effective for perimeter defense and rapid response scenarios.
+            </p>
+            <p>
+                Field testing conducted December 2023 at Site-<span class="redacted">██</span> demonstrated 87% efficacy rate 
+                against KRM-001 class entities. Side effects include <span class="redacted">████████████████</span> and 
+                temporary minty fresh breath.
+            </p>
+
+            <h3>D. RUDOLF-Beam Directed Energy Weapon</h3>
+            <p>
+                Weaponized application of Subject R-001's bioluminescent nose capability. Concentrated red-spectrum energy beam 
+                capable of <span class="redacted">████████████████████</span> at ranges exceeding 2 kilometers.
+            </p>
+            <p>
+                <strong style="color: #ff0000;">STATUS: PROTOTYPE PHASE</strong> - Ethical review pending. Subject R-001 has 
+                expressed <span class="redacted">████████</span> concerns regarding weaponization of genetic enhancements. 
+                Dr. Claus override authorization on file.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>IV. TACTICAL DEPLOYMENT PROTOCOLS</h2>
+
+            <h3>Threat Level: ELEVATED (Current Status)</h3>
+            <p>
+                - HOARFROST platforms manned 24/7<br>
+                - Elf Security Force (ESF) armed with TINSEL-7 munitions<br>
+                - Perimeter patrols increased to 4-hour intervals<br>
+                - Reindeer combat air patrol (CAP) operations active<br>
+                - <span class="redacted">████████████████</span> contingency plan prepared
+            </p>
+
+            <h3>Threat Level: CRITICAL (Activation Criteria)</h3>
+            <p>
+                - Confirmed KRM-001 sighting within 50km of Winterhold<br>
+                - Multiple entity incursion detected<br>
+                - Breach of outer defensive perimeter<br>
+                - <span class="redacted">████████████████████████████</span><br>
+                - Authorization from CLAUS.GS15 or higher required for RUDOLF-Beam deployment
+            </p>
+
+            <div class="warning-box">
+                <strong>⚠️ RULES OF ENGAGEMENT:</strong> Lethal force authorized for any entity matching KRM-001 profile 
+                within Winterhold defensive perimeter. Civilian casualties are acceptable if entity neutralization is achieved. 
+                Cover story WINTER-STORM-24 prepared for media deployment.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>V. OPERATIONAL INCIDENTS (2024)</h2>
+
+            <h3>Incident K-2024-003 (February 14, 2024)</h3>
+            <p>
+                KRM-001 manifestation detected at Alpine research station. HOARFROST-Alpha engaged target at 23:47 UTC. 
+                Entity neutralized after <span class="redacted">██</span> minute engagement. Collateral damage: 
+                <span class="redacted">████████████</span>. Cover story successful. No civilian witnesses survived.
+            </p>
+
+            <h3>Incident K-2024-007 (August 3, 2024)</h3>
+            <p>
+                Weapons test of CANDY CANE pike system resulted in <span class="redacted">████████████</span>. Three ESF 
+                personnel required medical treatment for <span class="redacted">███████████████</span>. Equipment modifications 
+                implemented. Test subject (Elf-8847) transferred to <span class="redacted">████████████████</span> for observation.
+            </p>
+
+            <h3>Incident K-2024-012 (December 5, 2024)</h3>
+            <p>
+                Most recent KRM-001 sighting. Entity observed in <span class="redacted">████████</span> region engaging in 
+                [DATA EXPUNGED]. Local authorities notified via back channels. Winterhold rapid response team deployed. 
+                Outcome: <span class="redacted">████████████████████████</span>. Investigation ongoing.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>VI. FUTURE DEVELOPMENT ROADMAP</h2>
+            <p>
+                - Phase 3 testing of RUDOLF-Beam targeting systems (Q1 2025)<br>
+                - Integration of AI-driven threat detection (Project NICE-LIST-AI)<br>
+                - Development of <span class="redacted">████████████████</span> class weapons<br>
+                - Expansion of HOARFROST network to <span class="redacted">██</span> additional locations<br>
+                - Cross-training of reindeer units for combat air support<br>
+                - <span class="redacted">████████████████████████████████████</span>
+            </p>
+
+            <div class="warning-box">
+                <strong>BUDGET NOTE:</strong> Current FY2025 budget request of $<span class="redacted">███████</span> million 
+                pending approval. Funding shortfalls may require reallocation from Toy Production Division or Elf Welfare Programs.
+            </div>
+        </div>
+
+        <div class="classified-stamp">
+            TOP SECRET<br>
+            [WINTERHOLD EYES ONLY]
+        </div>
+
+        <div style="text-align: center; margin: 2rem 0; color: #666; font-size: 0.9em;">
+            <p>END OF DOCUMENT</p>
+            <p>Next Review Date: 2025-01-15</p>
+            <p>Questions regarding this document should be directed to:<br>
+            <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b2c5d7d3c2dddcc19fd6d7c4f2c5dbdcc6d7c0daddded69cdfdbde">[email&#160;protected]</a></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>WINTERHOLD MILITARY INSTALLATION | PROJECT KRAMPUS DOCUMENTATION</p>
+        <p>Unauthorized disclosure of classified information is punishable under Holiday Security Act §742</p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        co

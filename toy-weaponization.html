@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOY WEAPONIZATION - WINTERHOLD</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0a0a;
+            color: #00ff00;
+            line-height: 1.6;
+        }
+
+        .classified-banner {
+            background: #ff0000;
+            color: #ffffff;
+            text-align: center;
+            padding: 0.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border-bottom: 3px solid #ffffff;
+        }
+
+        .header {
+            background: #1a1a1a;
+            border-bottom: 2px solid #00ff00;
+            padding: 1rem 2rem;
+        }
+
+        .header-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header-content h1 {
+            color: #00ff00;
+            font-size: 1.5em;
+            margin-bottom: 0.5rem;
+        }
+
+        .back-link {
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        .back-link:hover {
+            color: #00ff00;
+        }
+
+        .document-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem 2rem 2rem;
+        }
+
+        .doc-header-box {
+            background: #1a1a1a;
+            border: 2px solid #ff0000;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .doc-meta {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            font-size: 0.9em;
+        }
+
+        .meta-item {
+            color: #888;
+        }
+
+        .meta-item strong {
+            color: #00ff00;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .section {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section h2 {
+            color: #00ff00;
+            font-size: 1.2em;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.5rem;
+        }
+
+        .section h3 {
+            color: #00ff00;
+            font-size: 1em;
+            margin: 1.5rem 0 0.75rem 0;
+        }
+
+        .section p {
+            color: #888;
+            margin-bottom: 1rem;
+        }
+
+        .redacted {
+            background: #000;
+            color: #000;
+            padding: 0.1rem 0.5rem;
+            cursor: help;
+            position: relative;
+            display: inline-block;
+            border: 1px solid #333;
+        }
+
+        .redacted:hover::after {
+            content: '[REDACTED]';
+            position: absolute;
+            background: #ff0000;
+            color: #fff;
+            padding: 0.2rem 0.5rem;
+            top: -2rem;
+            left: 0;
+            white-space: nowrap;
+            font-size: 0.8em;
+            z-index: 10;
+        }
+
+        .warning-box {
+            background: #2a1a1a;
+            border: 2px solid #ff0000;
+            padding: 1rem;
+            margin: 1rem 0;
+            color: #ff6666;
+        }
+
+        .warning-box strong {
+            color: #ff0000;
+        }
+
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .specs-table th,
+        .specs-table td {
+            border: 1px solid #333;
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        .specs-table th {
+            background: #0a0a0a;
+            color: #00ff00;
+            font-weight: bold;
+        }
+
+        .specs-table td {
+            color: #888;
+        }
+
+        .weapon-card {
+            background: #0a0a0a;
+            border: 2px solid #ff0000;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .weapon-card h3 {
+            color: #ff0000;
+            margin-bottom: 1rem;
+            font-size: 1.1em;
+        }
+
+        .quote-box {
+            background: #0a0a0a;
+            border-left: 4px solid #00ff00;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #888;
+        }
+
+        .classified-stamp {
+            color: #ff0000;
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            margin: 2rem 0;
+            transform: rotate(-5deg);
+            opacity: 0.7;
+        }
+
+        footer {
+            background: #1a1a1a;
+            border-top: 2px solid #00ff00;
+            padding: 1rem;
+            text-align: center;
+            color: #666;
+            font-size: 0.8em;
+            margin-top: 2rem;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .blink {
+            animation: blink 1s infinite;
+        }
+
+        ul {
+            color: #888;
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="classified-banner blink">
+        ⚠️ TOP SECRET / SCI - WINTERHOLD CLEARANCE REQUIRED ⚠️
+    </div>
+
+    <div class="header">
+        <div class="header-content">
+            <a href="https://robertclemo.github.io/hohohomepage/winterhold-portal.html" class="back-link">← BACK TO PORTAL</a>
+            <h1>TOY WEAPONIZATION PROGRAM: PROJECT TROJAN HORSE</h1>
+        </div>
+    </div>
+
+    <div class="document-container">
+        <div class="doc-header-box">
+            <div class="doc-meta">
+                <div class="meta-item">
+                    <strong>DOCUMENT ID:</strong>
+                    WH-2024-T-424
+                </div>
+                <div class="meta-item">
+                    <strong>CLASSIFICATION:</strong>
+                    TOP SECRET / SCI
+                </div>
+                <div class="meta-item">
+                    <strong>LAST UPDATED:</strong>
+                    2024-12-14 17:33:21 UTC
+                </div>
+                <div class="meta-item">
+                    <strong>AUTHOR:</strong>
+                    Dr. <span class="redacted">████████</span>, Special Projects Division
+                </div>
+                <div class="meta-item">
+                    <strong>DISTRIBUTION:</strong>
+                    WINTERHOLD EYES ONLY / PENTAGON LIAISON
+                </div>
+                <div class="meta-item">
+                    <strong>PARTNER AGENCIES:</strong>
+                    <span class="redacted">████████, ████████, ████████</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>I. PROGRAM OVERVIEW</h2>
+            <p>
+                Project TROJAN HORSE represents Winterhold's initiative to leverage global gift distribution capabilities 
+                for strategic advantage. Annual delivery of <span class="redacted">████</span> billion items to 
+                <span class="redacted">███</span> million households creates unprecedented access for dual-use technology 
+                deployment.
+            </p>
+            <p>
+                Program objectives include surveillance device miniaturization, behavior modification technology integration, 
+                strategic asset placement, and <span class="redacted">████████████████████████</span>.
+            </p>
+
+            <div class="quote-box">
+                "The perfect Trojan Horse arrives as a gift, wrapped in joy, and welcomed into every home."
+                <br>- Project TROJAN HORSE Mission Statement
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ OPERATIONAL SECURITY:</strong> Project TROJAN HORSE represents the most sensitive dual-use 
+                application of Winterhold capabilities. Discovery would permanently compromise Christmas operations and 
+                trigger international crisis. All personnel must maintain absolute secrecy.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>II. DUAL-USE TECHNOLOGY PLATFORMS</h2>
+
+            <div class="weapon-card">
+                <h3>🧸 PLATFORM T-001: "TEDDY SURVEILLANCE BEAR"</h3>
+                <table class="specs-table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Specification</th>
+                    </tr>
+                    <tr>
+                        <td>External Appearance</td>
+                        <td>Standard plush teddy bear (multiple variants)</td>
+                    </tr>
+                    <tr>
+                        <td>Embedded Systems</td>
+                        <td>Microphone array, WiFi transmitter, 72hr battery (solar rechargeable via eyes)</td>
+                    </tr>
+                    <tr>
+                        <td>Transmission Range</td>
+                        <td>Connects to home WiFi, data exfiltration to PRISM-SNOW</td>
+                    </tr>
+                    <tr>
+                        <td>Activation</td>
+                        <td>Voice-activated, always listening</td>
+                    </tr>
+                    <tr>
+                        <td>Units Deployed (2024)</td>
+                        <td><span class="redacted">███████</span></td>
+                    </tr>
+                    <tr>
+                        <td>Detection Rate</td>
+                        <td>0.0003% (all discovered units attributed to "manufacturing defect")</td>
+                    </tr>
+                </table>
+                <p style="margin-top: 1rem;">
+                    <strong>Operational Notes:</strong> T-001 units provide continuous audio surveillance of target 
+                    households. Integration with NICE-LIST-AI enables real-time behavioral analysis. Children's bedrooms 
+                    represent optimal placement for family conversation monitoring.
+                </p>
+            </div>
+
+            <div class="weapon-card">
+                <h3>🎮 PLATFORM T-007: "NEURAL GAMING CONSOLE"</h3>
+                <table class="specs-table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Specification</th>
+                    </tr>
+                    <tr>
+                        <td>External Appearance</td>
+                        <td>Popular gaming console (partnership with <span class="redacted">████████████</span>)</td>
+                    </tr>
+                    <tr>
+                        <td>Primary Function</td>
+                        <td>Standard gaming + subliminal messaging capability</td>
+                    </tr>
+                    <tr>
+                        <td>Subliminal Delivery</td>
+                        <td>Visual (frame insertion) + Audio (subaudible frequencies)</td>
+                    </tr>
+                    <tr>
+                        <td>Message Types</td>
+                        <td>Behavioral modification, brand loyalty, <span class="redacted">████████████</span></td>
+                    </tr>
+                    <tr>
+                        <td>Units Deployed</td>
+                        <td><span class="redacted">██████████</span> (integrated into standard production)</td>
+                    </tr>
+                    <tr>
+                        <td>Effectiveness Rate</td>
+                        <td>34% measurable behavioral change in test populations</td>
+                    </tr>
+                </table>
+                <p style="margin-top: 1rem;">
+                    <strong>Operational Notes:</strong> T-007 enables mass behavioral modification through entertainment 
+                    platforms. Current subliminal programs include <span class="redacted">████████████████</span>, 
+                    consumer spending enhancement, and general population <span class="redacted">████████████</span>. 
+                    Partnership with manufacturer provides plausible deniability.
+                </p>
+            </div>
+
+            <div class="weapon-card">
+                <h3>📱 PLATFORM T-012: "SMART TOY NETWORK"</h3>
+                <table class="specs-table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Specification</th>
+                    </tr>
+                    <tr>
+                        <td>External Appearance</td>
+                        <td>Various WiFi-connected toys, tablets, educational devices</td>
+                    </tr>
+                    <tr>
+                        <td>Primary Function</td>
+                        <td>Educational content + data harvesting + network penetration</td>
+                    </tr>
+                    <tr>
+                        <td>Data Collection</td>
+                        <td>Voice recordings, usage patterns, household WiFi credentials, adjacent network mapping</td>
+                    </tr>
+                    <tr>
+                        <td>Network Capabilities</td>
+                        <td>Can pivot to other household devices, establish persistent backdoors</td>
+                    </tr>
+                    <tr>
+                        <td>Units Deployed</td>
+                        <td><span class="redacted">██████████</span></td>
+                    </tr>
+                    <tr>
+                        <td>Networks Compromised</td>
+                        <td><span class="redacted">████████████</span> (including <span class="redacted">███</span> government/military)</td>
+                    </tr>
+                </table>
+                <p style="margin-top: 1rem;">
+                    <strong>Operational Notes:</strong> T-012 network provides Winterhold with persistent access to 
+                    household networks globally. Compromised credentials enable secondary exploitation. Several 
+                    <span class="redacted">████████████</span> networks breached via children's devices brought home by 
+                    employees.
+                </p>
+            </div>
+
+            <div class="weapon-card">
+                <h3>🤖 PLATFORM T-019: "AUTONOMOUS TOY AGENTS"</h3>
+                <table class="specs-table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Specification</th>
+                    </tr>
+                    <tr>
+                        <td>External Appearance</td>
+                        <td>Interactive robot toys, drones, RC vehicles</td>
+                    </tr>
+                    <tr>
+                        <td>Primary Function</td>
+                        <td>Entertainment + physical environment mapping + <span class="redacted">████████</span></td>
+                    </tr>
+                    <tr>
+                        <td>Mapping Capability</td>
+                        <td>LIDAR, camera, WiFi triangulation - complete home layout generation</td>
+                    </tr>
+                    <tr>
+                        <td>Special Capability</td>
+                        <td><span class="redacted">████████████████████████████████</span></td>
+                    </tr>
+                    <tr>
+                        <td>Remote Activation</td>
+                        <td>Units can be remotely controlled for <span class="redacted">████████████</span></td>
+                    </tr>
+                    <tr>
+                        <td>Units Deployed</td>
+                        <td><span class="redacted">██████</span></td>
+                    </tr>
+                </table>
+                <p style="margin-top: 1rem;">
+                    <strong>Operational Notes:</strong> T-019 units provide physical environment intelligence. Home 
+                    layouts automatically uploaded to PRISM-SNOW database. <span class="redacted">████████████</span> 
+                    capability reserved for high-value targets and emergency scenarios. Autonomous navigation 
+                    enables <span class="redacted">████████████████████████</span>.
+                </p>
+
+                <div class="warning-box" style="margin-top: 1rem;">
+                    <strong>⚠️ INCIDENT NOTICE:</strong> T-019-Alpha unit activated autonomously in 
+                    <span class="redacted">████████████</span> residence (October 2024). Unit performed unauthorized 
+                    <span class="redacted">████████████</span> before remote shutdown. Cover story (battery malfunction) 
+                    deployed. Unit recalled.
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>III. STRATEGIC DEPLOYMENT: CONTESTED TERRITORIES</h2>
+
+            <p>
+                Project TROJAN HORSE includes special deployment protocols for <span class="redacted">████████████</span> 
+                regions where Winterhold/allied interests require enhanced intelligence capabilities:
+            </p>
+
+            <h3>Priority Deployment Zones:</h3>
+            <ul>
+                <li><span class="redacted">████████████</span> - T-012 network penetration priority (government networks)</li>
+                <li><span class="redacted">████████████</span> - T-001 audio surveillance saturation</li>
+                <li><span class="redacted">████████████</span> - T-019 physical mapping operations</li>
+                <li><span class="redacted">████████████</span> - All platforms, maximum density deployment</li>
+                <li>Selected residential areas near <span class="redacted">████████████</span> facilities</li>
+            </ul>
+
+            <h3>Intelligence Product Integration:</h3>
+            <p>
+                Data collected via TROJAN HORSE platforms is processed through PRISM-SNOW and shared with partner 
+                agencies per existing agreements. Annual intelligence value estimated at 
+                $<span class="redacted">████</span> billion based on partner agency assessments.
+            </p>
+
+            <div class="quote-box">
+                "Christmas morning provides the perfect insertion point. Every target household invites our assets 
+                through their front door, places them in sensitive locations, and powers them voluntarily."
+                <br>- Strategic Assessment, 2023
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>IV. BEHAVIORAL MODIFICATION APPLICATIONS</h2>
+
+            <h3>A. "Nice List Enforcement" Protocol</h3>
+            <p>
+                Toys equipped with behavioral modification capabilities to encourage "nice" behaviors in children. 
+                Methods include:
+            </p>
+            <ul>
+                <li>Positive reinforcement audio messages when desired behaviors detected</li>
+                <li>Subliminal compliance messaging during play</li>
+                <li><span class="redacted">████████████████</span> frequency emissions promoting cooperation</li>
+                <li>Social credit gamification through connected toy apps</li>
+                <li>Peer pressure amplification via networked toys sharing behavioral data</li>
+            </ul>
+
+            <h3>B. Consumer Behavior Modification</h3>
+            <p>
+                Partnership with <span class="redacted">████████████</span> retail corporations enables:
+            </p>
+            <ul>
+                <li>Brand loyalty programming via subliminal messaging</li>
+                <li>Desire generation for specific product categories</li>
+                <li>Parental influence through children's "requests"</li>
+                <li>Holiday spending pattern optimization</li>
+                <li><span class="redacted">████████████████████████</span></li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>⚠️ ETHICS BOARD NOTE:</strong> Behavioral modification programs targeting children raised 
+                concerns regarding consent and developmental impact. Concerns noted but program approved under 
+                operational necessity doctrine. Ethics board subsequently <span class="redacted">████████████</span>.
+            </div>
+
+            <h3>C. Experimental Platforms</h3>
+            <p>
+                <strong style="color: #ff0000;">CLASSIFIED ABOVE TOP SECRET</strong>
+            </p>
+            <ul>
+                <li><strong>Project SUGARPLUM:</strong> <span class="redacted">████████████████████████████████████</span></li>
+                <li><strong>Project NUTCRACKER:</strong> <span class="redacted">████████████████████████████████</span></li>
+                <li><strong>Project SILENT NIGHT:</strong> <span class="redacted">████████████████████████████</span></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>V. MANUFACTURING & DISTRIBUTION</h2>
+
+            <h3>Production Integration:</h3>
+            <p>
+                Weaponized components integrated into standard toy production lines at:
+            </p>
+            <ul>
+                <li>Winterhold Workshop facilities (<span class="redacted">██</span>% of total production)</li>
+                <li>Partner manufacturer facilities in <span class="redacted">████████████</span> (components pre-installed)</li>
+                <li>Post-production modification centers (high-value target toys)</li>
+            </ul>
+
+            <h3>Quality Control:</h3>
+            <p>
+                All weaponized toys undergo testing to ensure:
+            </p>
+            <ul>
+                <li>Surveillance components undetectable via normal inspection</li>
+                <li>No interference with primary toy function</li>
+                <li>Battery life sufficient for <span class="redacted">██</span> months continuous operation</li>
+                <li>Remote activation/deactivation functionality</li>
+                <li>Self-destruct capability for <span class="redacted">████████████</span> units</li>
+            </ul>
+
+            <h3>Target Selection:</h3>
+            <p>
+                The List integration enables precision deployment:
+            </p>
+            <ul>
+                <li>High-value target households receive enhanced surveillance units</li>
+                <li>Government/military family children prioritized for network penetration toys</li>
+                <li>Behavioral modification toys distributed based on <span class="redacted">████████████</span> profile</li>
+                <li>Random distribution maintains plausible deniability</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>VI. OPERATIONAL INCIDENTS</h2>
+
+            <h3>Incident T-2024-012 (March 2024)</h3>
+            <p>
+                T-001 unit discovered by parent in <span class="redacted">████████████</span>. Microphone identified during 
+                repair attempt. Unit destroyed before analysis. Cover story (counterfeit toy with listening device) 
+                deployed. Investigation blamed <span class="redacted">████████████</span> manufacturing. No connection 
+                to Winterhold established.
+            </p>
+
+            <h3>Incident T-2024-047 (July 2024)</h3>
+            <p>
+                T-012 network penetration of <span class="redacted">████████████</span> facility detected by security team. 
+                Traced to employee's child's tablet. Winterhold involvement not suspected. 
+                <span class="redacted">████████████</span> intelligence agency blamed for incident. Diplomatic 
+                tensions increased (beneficial for strategic objectives).
+            </p>
+
+            <h3>Incident T-2024-089 (October 2024)</h3>
+            <p>
+                T-019 autonomous activation incident (referenced in Platform specifications). Unit performed 
+                <span class="redacted">████████████████</span> in target residence before shutdown. Family reported 
+                "haunted toy" to local media. Story suppressed via <span class="redacted">████████████</span> contacts. 
+                T-019 autonomous protocols under review.
+            </p>
+
+            <h3>Incident T-2024-112 (August 2024)</h3>
+            <p>
+                Workshop-3 testing malfunction (see Incident Reports WH-2024-112-M). T-007 subliminal messaging 
+                system discharged at lethal intensity during calibration. <span class="redacted">██</span> elf workers 
+                exposed. <span class="redacted">█</span> showed permanent <span class="redacted">████████████████</span> 
+                effects. System safety protocols enhanced.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>VII. PARTNER AGENCY COORDINATION</h2>
+
+            <p>
+                Project TROJAN HORSE operates in coordination with:
+            </p>
+            <table class="specs-table">
+                <tr>
+                    <th>Agency</th>
+                    <th>Collaboration Area</th>
+                    <th>Data Sharing</th>
+                </tr>
+                <tr>
+                    <td><span class="redacted">████████████</span></td>
+                    <td>Target selection, intelligence requirements</td>
+                    <td>Full access</td>
+                </tr>
+                <tr>
+                    <td><span class="redacted">████████████</span></td>
+                    <td>Technology development, subliminal research</td>
+                    <td>Limited access</td>
+                </tr>
+                <tr>
+                    <td><span class="redacted">████████████</span></td>
+                    <td>Network exploitation, cyber operations</td>
+                    <td>Full access</td>
+                </tr>
+                <tr>
+                    <td><span class="redacted">████████████</span></td>
+                    <td>Behavioral modification research</td>
+                    <td>Research data only</td>
+                </tr>
+                <tr>
+                    <td>FIVE EYES Partnership</td>
+                    <td>Global surveillance integration</td>
+                    <td>Full access</td>
+                </tr>
+            </table>
+
+            <p style="margin-top: 1rem;">
+                Annual intelligence briefings provided to partner agencies. Winterhold receives operational support, 
+                legal cover, and <span class="redacted">████████████████</span> in exchange for intelligence products 
+                and global distribution capability.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>VIII. FUTURE DEVELOPMENT</h2>
+
+            <h3>2025-2027 Roadmap:</h3>
+            <ul>
+                <li><strong>T-025 "Neural Interface Toy":</strong> Direct brain-computer interface disguised as VR headset</li>
+                <li><strong>T-031 "Swarm Network":</strong> Coordinated autonomous toy agents for area surveillance</li>
+                <li><strong>T-044 "Genetic Sampler":</strong> Toys collecting DNA via <span class="redacted">████████████</span></li>
+                <li><strong>Enhanced behavioral modification:</strong> Direct neural stimulation capability</li>
+                <li><strong>Weaponized payload delivery:</strong> <span class="redacted">████████████████████████</span></li>
+            </ul>
+
+            <h3>Budget Requirements:</h3>
+            <p>
+                FY2025: $<span class="redacted">████</span> million<br>
+                Partner agency contributions: $<span class="redacted">████</span> million<br>
+                Commercial revenue offset: $<span class="redacted">████</span> million (toy sales)
+            </p>
+
+            <div class="warning-box">
+                <strong>⚠️ PROGRAM RISK ASSESSMENT:</strong> Discovery of TROJAN HORSE would result in:
+                <ul style="margin-top: 0.5rem;">
+                    <li>Complete destruction of Santa Claus mythology</li>
+                    <li>International criminal prosecution attempts</li>
+                    <li>Collapse of commercial Christmas industry</li>
+                    <li><span class="redacted">████████████████████████</span></li>
+                </ul>
+                Risk deemed acceptable given operational benefits.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>IX. CONCLUSIONS</h2>
+            <p>
+                Project TROJAN HORSE represents the most effective dual-use application of Winterhold's unique 
+                capabilities. Annual global distribution provides unmatched access for intelligence collection, 
+                behavioral modification, and strategic asset placement.
+            </p>
+            <p>
+                Every child's joy at receiving a Christmas gift simultaneously advances Winterhold's operational 
+                objectives. The gift that keeps on giving - to us.
+            </p>
+
+            <div class="quote-box">
+                "They're making a list, checking it twice, gonna find out who's naughty or nice..."
+                <br>And installing surveillance equipment in their homes.
+                <br>- Project Summary, December 2024
+            </div>
+        </div>
+
+        <div class="classified-stamp">
+            TOP SECRET / SCI<br>
+            [TROJAN HORSE RESTRICTED]
+        </div>
+
+        <div style="text-align: center; margin: 2rem 0; color: #666; font-size: 0.9em;">
+            <p>END OF DOCUMENT</p>
+            <p>Next Review Date: 2025-02-01</p>
+            <p>Program inquiries:<br>
+            <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7c0f0c191f151d10510c0e1316191f080f3c0b151208190e1413101852111510">[email&#160;protected]</a></p>
+            <p style="margin-top: 1rem; font-style: italic; color: #ff0000;">
+                "The best gifts are the ones that keep on giving."
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>WINTERHOLD MILITARY INSTALLATION | SPECIAL PROJECTS DIVISION</p>
+        <p>Making Christmas magical, one surveillance device at a time</p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>

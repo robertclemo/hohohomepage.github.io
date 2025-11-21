@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTERCEPTED COMMUNICATIONS - WINTERHOLD</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0a0a;
+            color: #00ff00;
+            line-height: 1.6;
+        }
+
+        .classified-banner {
+            background: #ff0000;
+            color: #ffffff;
+            text-align: center;
+            padding: 0.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border-bottom: 3px solid #ffffff;
+        }
+
+        .header {
+            background: #1a1a1a;
+            border-bottom: 2px solid #00ff00;
+            padding: 1rem 2rem;
+        }
+
+        .header-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header-content h1 {
+            color: #00ff00;
+            font-size: 1.5em;
+            margin-bottom: 0.5rem;
+        }
+
+        .back-link {
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        .back-link:hover {
+            color: #00ff00;
+        }
+
+        .document-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem 2rem 2rem;
+        }
+
+        .doc-header-box {
+            background: #1a1a1a;
+            border: 2px solid #ff0000;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .doc-meta {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            font-size: 0.9em;
+        }
+
+        .meta-item {
+            color: #888;
+        }
+
+        .meta-item strong {
+            color: #00ff00;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .section {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section h2 {
+            color: #00ff00;
+            font-size: 1.2em;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.5rem;
+        }
+
+        .section h3 {
+            color: #00ff00;
+            font-size: 1em;
+            margin: 1.5rem 0 0.75rem 0;
+        }
+
+        .section p {
+            color: #888;
+            margin-bottom: 1rem;
+        }
+
+        .redacted {
+            background: #000;
+            color: #000;
+            padding: 0.1rem 0.5rem;
+            cursor: help;
+            position: relative;
+            display: inline-block;
+            border: 1px solid #333;
+        }
+
+        .redacted:hover::after {
+            content: '[REDACTED]';
+            position: absolute;
+            background: #ff0000;
+            color: #fff;
+            padding: 0.2rem 0.5rem;
+            top: -2rem;
+            left: 0;
+            white-space: nowrap;
+            font-size: 0.8em;
+            z-index: 10;
+        }
+
+        .warning-box {
+            background: #2a1a1a;
+            border: 2px solid #ff0000;
+            padding: 1rem;
+            margin: 1rem 0;
+            color: #ff6666;
+        }
+
+        .warning-box strong {
+            color: #ff0000;
+        }
+
+        .email-container {
+            background: #0a0a0a;
+            border: 2px solid #333;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .email-header {
+            background: #1a1a1a;
+            border: 1px solid #00ff00;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9em;
+        }
+
+        .email-header div {
+            margin-bottom: 0.5rem;
+            color: #888;
+        }
+
+        .email-header strong {
+            color: #00ff00;
+            display: inline-block;
+            width: 80px;
+        }
+
+        .email-body {
+            color: #888;
+            padding: 1rem;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            line-height: 1.8;
+        }
+
+        .email-body p {
+            margin-bottom: 1rem;
+        }
+
+        .hr-note {
+            background: #2a1a1a;
+            border-left: 4px solid #ffaa00;
+            padding: 1rem;
+            margin: 1rem 0;
+            color: #ffaa00;
+            font-style: italic;
+        }
+
+        .classified-stamp {
+            color: #ff0000;
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            margin: 2rem 0;
+            transform: rotate(-5deg);
+            opacity: 0.7;
+        }
+
+        footer {
+            background: #1a1a1a;
+            border-top: 2px solid #00ff00;
+            padding: 1rem;
+            text-align: center;
+            color: #666;
+            font-size: 0.8em;
+            margin-top: 2rem;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .blink {
+            animation: blink 1s infinite;
+        }
+
+        ul {
+            color: #888;
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="classified-banner blink">
+        ⚠️ CONFIDENTIAL - HR INVESTIGATION IN PROGRESS ⚠️
+    </div>
+
+    <div class="header">
+        <div class="header-content">
+            <a href="https://robertclemo.github.io/hohohomepage/winterhold-portal.html" class="back-link">← BACK TO PORTAL</a>
+            <h1>INTERCEPTED COMMUNICATIONS: MRS. CLAUS EMAIL ARCHIVES</h1>
+        </div>
+    </div>
+
+    <div class="document-container">
+        <div class="doc-header-box">
+            <div class="doc-meta">
+                <div class="meta-item">
+                    <strong>DOCUMENT ID:</strong>
+                    WH-2024-C-069
+                </div>
+                <div class="meta-item">
+                    <strong>CLASSIFICATION:</strong>
+                    CONFIDENTIAL
+                </div>
+                <div class="meta-item">
+                    <strong>LAST UPDATED:</strong>
+                    2024-12-16 16:20:45 UTC
+                </div>
+                <div class="meta-item">
+                    <strong>INVESTIGATOR:</strong>
+                    Director <span class="redacted">████████</span>, HR Compliance Division
+                </div>
+                <div class="meta-item">
+                    <strong>INVESTIGATION STATUS:</strong>
+                    <span style="color: #ffaa00;">ACTIVE - PENDING RESOLUTION</span>
+                </div>
+                <div class="meta-item">
+                    <strong>SUBJECT:</strong>
+                    Mrs. Jessica Claus (CLAUS.GS15)
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>I. INVESTIGATION SUMMARY</h2>
+            <p>
+                Following anonymous complaints regarding inappropriate workplace behavior, HR Compliance Division initiated 
+                surveillance of email accounts associated with Mrs. Jessica Claus (GS-15, Director of Elf Resources). 
+                Investigation uncovered multiple concerning communication patterns across several unauthorized email addresses.
+            </p>
+
+            <h3>Implicated Email Addresses:</h3>
+            <ul>
+                <li><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3b58544e5c5a49645a4f644f535e644b54575e7b4c5449504853544b15585456">[email&#160;protected]</a></li>
+                <li><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="91e3e4f5fefde1f9e2cefffee2f4cee1fefdf8e2f9f4e3d1fffee3e5f9e1fefdf4bff2fefc">[email&#160;protected]</a></li>
+                <li><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f49a9b86809c849b9891ab979b81939586b4919892839b869f879c9b84da979b99">[email&#160;protected]</a></li>
+                <li><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6a0f121a0f18030f04090f0e350718193509060b1f192a13051f040d020f061a0f181944040f1e">[email&#160;protected]</a></li>
+                <li><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="85e6e9e4f0f6abe2f6b4b0c5f2ecebf1e0f7edeae9e1abe8ece9">[email&#160;protected]</a> (official account - personal use violations)</li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>⚠️ SENSITIVITY WARNING:</strong> This document contains communications of a sensitive nature regarding 
+                workplace conduct. Distribution limited to HR personnel and senior management. Unauthorized disclosure may 
+                compromise ongoing investigation and create <span class="redacted">████████████</span> liability for Winterhold.
+            </div>
+
+            <h3>Complaint Summary:</h3>
+            <ul>
+                <li>Inappropriate communications with subordinate staff members (Elves)</li>
+                <li>Misuse of position authority for personal relationships</li>
+                <li>Creation of hostile work environment</li>
+                <li>Use of Winterhold equipment for non-official purposes</li>
+                <li>Violation of fraternization policies (multiple counts)</li>
+                <li><span class="redacted">████████████████████████</span></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>II. INTERCEPTED COMMUNICATIONS (SELECTED SAMPLES)</h2>
+
+            <div class="email-container">
+                <div class="email-header">
+                    <div><strong>From:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7a19150f1d1b08251b0e250e121f250a15161f3a0d1508110912150a54191517">[email&#160;protected]</a></div>
+                    <div><strong>To:</strong> <span class="redacted">████████</span>@elfmail.com</div>
+                    <div><strong>Date:</strong> November 3, 2024 11:47 PM</div>
+                    <div><strong>Subject:</strong> Re: Late night inventory check ;)</div>
+                </div>
+                <div class="email-body">
+                    <p>Hey there,</p>
+                    <p>
+                        I noticed you working late in Workshop-7 tonight. Very dedicated to those toy production quotas, aren't you? 
+                        I appreciate that kind of... stamina... in my workforce. 😏
+                    </p>
+                    <p>
+                        I'll be doing a "quality inspection" of the night shift around 2 AM. Perhaps you could show me your work 
+                        on the new toy assembly line? I'm particularly interested in hands-on demonstrations. The more hands-on, 
+                        the better.
+                    </p>
+                    <p>
+                        My office has excellent soundproofing. For confidential performance reviews, of course.
+                    </p>
+                    <p>
+                        - J
+                    </p>
+                    <p style="font-size: 0.8em; color: #666;">
+                        P.S. - Bring those safety goggles. Workshop regulations, you understand. 😉
+                    </p>
+                </div>
+                <div class="hr-note">
+                    <strong>HR NOTE:</strong> Recipient (Elf-4782) filed formal complaint on November 5. This communication 
+                    violates Sections 4.2, 7.1, and 9.3 of Winterhold Personnel Code. Power dynamic concerns flagged.
+                </div>
+            </div>
+
+            <div class="email-container">
+                <div class="email-header">
+                    <div><strong>From:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7b090e1f14170b1308241514081e240b14171208131e093b1514090f130b14171e55181416">[email&#160;protected]</a></div>
+                    <div><strong>To:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ea98c4988f83848e8f8f98aa999e8b88868fc7859a99c4898587">[email&#160;protected]</a></div>
+                    <div><strong>Date:</strong> October 12, 2024 9:23 PM</div>
+                    <div><strong>Subject:</strong> That nose isn't going to polish itself</div>
+                </div>
+                <div class="email-body">
+                    <p>Rudolph,</p>
+                    <p>
+                        I've been thinking about your... unique capabilities. That bioluminescent nose of yours requires special 
+                        attention, doesn't it? Regular maintenance is so important for optimal performance.
+                    </p>
+                    <p>
+                        I've taken a personal interest in ensuring our lead reindeer is properly cared for. Your stall, 
+                        tonight, 10 PM? I'll bring the polishing cloth. And maybe some of that special feed you like.
+                    </p>
+                    <p>
+                        Don't worry about Santa. He'll be in his workshop doing... whatever it is he does these days. 
+                        We'll have plenty of time for a thorough... inspection.
+                    </p>
+                    <p>
+                        Your nose isn't the only thing that glows around here. 😘
+                    </p>
+                    <p>
+                        - Mrs. C
+                    </p>
+                </div>
+                <div class="hr-note">
+                    <strong>HR NOTE:</strong> Subject R-001 ("Rudolph") reported feeling "uncomfortable" and "objectified." 
+                    Cross-species fraternization policy violations under review. Legal implications <span class="redacted">████████</span>.
+                </div>
+            </div>
+
+            <div class="email-container">
+                <div class="email-header">
+                    <div><strong>From:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="07696875736f77686b625864687260667547626b617068756c746f68772964686a">[email&#160;protected]</a></div>
+                    <div><strong>To:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fa83958f949dd79f968c9f89d79e93898e8893988f8e939594d79693898eba8d93948e9f889295969ed4979396">[email&#160;protected]</a></div>
+                    <div><strong>Date:</strong> September 28, 2024 2:34 PM</div>
+                    <div><strong>Subject:</strong> "Mentorship" Program Opportunities</div>
+                </div>
+                <div class="email-body">
+                    <p>Dear Workshop Associates,</p>
+                    <p>
+                        I'm pleased to announce a new "mentorship" program for promising young elves showing exceptional dedication 
+                        to their work. As Director of Elf Resources, I take personal interest in... developing... our talent pool.
+                    </p>
+                    <p>
+                        Selected participants will receive one-on-one guidance, after-hours training sessions, and special attention 
+                        to their career advancement. I particularly value enthusiasm, flexibility, and willingness to go above and 
+                        beyond normal duties.
+                    </p>
+                    <p>
+                        Interested elves should contact me directly at this email address. Discretion is appreciated - we wouldn't 
+                        want to create jealousy among your peers. This is an exclusive opportunity for special individuals.
+                    </p>
+                    <p>
+                        I'm especially interested in elves working in the North Wing workshops. Something about the atmosphere there 
+                        really gets my candy canes... I mean, creative juices... flowing.
+                    </p>
+                    <p>
+                        Looking forward to "working closely" with you all.
+                    </p>
+                    <p>
+                        Mrs. Jessica Claus<br>
+                        Director, Elf Resources<br>
+                        GS-15
+                    </p>
+                </div>
+                <div class="hr-note">
+                    <strong>HR NOTE:</strong> Mass email to 847 junior elf employees. <span class="redacted">██</span> formal 
+                    complaints filed. "Mentorship" program not approved through official channels. SEVERE policy violations. 
+                    Recommend immediate <span class="redacted">████████████████</span>.
+                </div>
+            </div>
+
+            <div class="email-container">
+                <div class="email-header">
+                    <div><strong>From:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="41222d2034326f263270740136282f352433292e2d256f2c282d">[email&#160;protected]</a></div>
+                    <div><strong>To:</strong> <span class="redacted">████████</span>@personal-email.com</div>
+                    <div><strong>Date:</strong> August 15, 2024 11:58 PM</div>
+                    <div><strong>Subject:</strong> You up?</div>
+                </div>
+                <div class="email-body">
+                    <p>
+                        Can't stop thinking about that "safety training" session last week. Your knowledge of proper workshop 
+                        equipment handling was very... impressive. 
+                    </p>
+                    <p>
+                        Santa's at another one of his Krampus strategy meetings. Won't be back until dawn. My quarters. 
+                        Now?
+                    </p>
+                    <p>
+                        I'll leave the door unlocked. You know where the spare key candy canes are hidden. 😈
+                    </p>
+                    <p>
+                        - J
+                    </p>
+                    <p style="font-size: 0.8em; color: #666;">
+                        Sent from my Winterhold Official Device
+                    </p>
+                </div>
+                <div class="hr-note">
+                    <strong>HR NOTE:</strong> Use of official government email system for personal communications. Violation of 
+                    Computer Use Policy and possibly <span class="redacted">████████████</span>. Device forensics reveal 
+                    <span class="redacted">███</span> similar messages to various recipients.
+                </div>
+            </div>
+
+            <div class="email-container">
+                <div class="email-header">
+                    <div><strong>From:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bfdac7cfdacdd6dad1dcdadbe0d2cdcce0dcd3decaccffc6d0cad1d8d7dad3cfdacdcc91d1dacb">[email&#160;protected]</a></div>
+                    <div><strong>To:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="036a6d7766716d2e64716c76732e65626f6f3133313743746c7168706b6c732d606c6e">[email&#160;protected]</a></div>
+                    <div><strong>Date:</strong> July 3, 2024 4:16 PM</div>
+                    <div><strong>Subject:</strong> Welcome New Interns! 🎄</div>
+                </div>
+                <div class="email-body">
+                    <p>Hello Fresh Faces!</p>
+                    <p>
+                        Welcome to the Winterhold internship program! I'm Mrs. Claus, but you can call me Jessica. Or Jess. 
+                        Or whatever you're comfortable with. 😊
+                    </p>
+                    <p>
+                        I like to personally welcome all our new young talent. And I do mean YOUNG talent. There's something 
+                        so... refreshing... about the energy you bring to our workshops.
+                    </p>
+                    <p>
+                        My door is always open. Day or night. Seriously, I never lock it. And I've been told I'm a very 
+                        hands-on supervisor. I believe in getting to know my interns... intimately... I mean, individually. 
+                        Personally. You know what I mean.
+                    </p>
+                    <p>
+                        I've noticed some of you are quite... short. I find that adorable. And convenient for certain tasks. 
+                        High shelves can be such a problem, can't they? Good thing I'm here to help you reach for the stars. 
+                        Among other things.
+                    </p>
+                    <p>
+                        Looking forward to a very productive summer. See you all at orientation. I'll be the one in the red dress. 
+                        You won't miss me. 😘
+                    </p>
+                    <p>
+                        - Mrs. C
+                    </p>
+                </div>
+                <div class="hr-note">
+                    <strong>HR NOTE:</strong> Multiple concerning elements. "Cougar" behavior pattern evident. Age-inappropriate 
+                    interest in intern population. Recommend mandatory harassment training and 
+                    <span class="redacted">████████████████</span>.
+                </div>
+            </div>
+
+        </div>
+
+        <div class="section">
+            <h2>III. ADDITIONAL EVIDENCE</h2>
+
+            <h3>Text Message Intercepts (Sample)</h3>
+            <p style="font-family: monospace; background: #0a0a0a; padding: 1rem; border: 1px solid #333; margin: 1rem 0;">
+                [2:47 AM] MRS_C: That thing you did with the wrapping paper yesterday...<br>
+                [2:48 AM] <span class="redacted">████████</span>: Mrs. Claus, this is inappropriate<br>
+                [2:48 AM] MRS_C: Call me Jessica 😏<br>
+                [2:49 AM] <span class="redacted">████████</span>: I'm blocking this number<br>
+                [2:50 AM] MRS_C: I control your performance reviews<br>
+                [2:51 AM] MRS_C: And your workshop assignments<br>
+                [2:52 AM] MRS_C: We should talk about your future here<br>
+                [2:53 AM] MRS_C: My office, tomorrow, 9 PM
+            </p>
+
+            <h3>Workshop Security Footage Notes</h3>
+            <p>
+                Video surveillance logs indicate Mrs. Claus entered Workshop-7 on <span class="redacted">██</span> separate 
+                occasions during late night/early morning hours (2 AM - 4 AM timeframe). She was accompanied by 
+                <span class="redacted">█████████████</span> on multiple occasions. Duration of visits: 
+                <span class="redacted">██</span> minutes to <span class="redacted">█</span> hours.
+            </p>
+            <p>
+                Audio surveillance (where available) recorded <span class="redacted">████████████████████████</span>. 
+                Full footage has been secured as evidence. Santa has NOT been briefed on these findings.
+            </p>
+
+            <h3>Witness Statements (Summary)</h3>
+            <ul>
+                <li>Elf-4782: "She kept finding reasons to be near me. Touching my shoulder. Comments about my... height."</li>
+                <li>Elf-5901: "The 'mentorship' was not about career development. She made that clear very quickly."</li>
+                <li>Elf-7234: "I felt I had to comply or my job would be at risk. She's very powerful here."</li>
+                <li>Subject R-001: "I just wanted to do my job. The attention made me uncomfortable."</li>
+                <li><span class="redacted">████████████████████████████████</span></li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>⚠️ LEGAL EXPOSURE:</strong> Current evidence suggests potential violations of:
+                <ul style="margin-top: 0.5rem;">
+                    <li>Workplace harassment statutes</li>
+                    <li>Abuse of authority protocols</li>
+                    <li>Fraternization policies</li>
+                    <li><span class="redacted">████████████████████</span></li>
+                </ul>
+                Winterhold faces significant legal liability if this becomes public. Recommend 
+                <span class="redacted">████████████████████████</span> and comprehensive settlement negotiations.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>IV. INVESTIGATION FINDINGS</h2>
+
+            <p>
+                <strong>Pattern of Behavior:</strong> Evidence suggests sustained pattern of inappropriate workplace conduct 
+                spanning minimum <span class="redacted">██</span> months. Mrs. Claus has leveraged her position as GS-15 
+                Director to create uncomfortable situations for subordinate staff members, particularly younger elves and 
+                certain reindeer personnel.
+            </p>
+
+            <p>
+                <strong>Power Dynamics:</strong> All identified targets were in subordinate positions, creating inherent 
+                power imbalance. Multiple victims expressed fear of retaliation if they rejected advances or filed complaints.
+            </p>
+
+            <p>
+                <strong>Scale:</strong> Investigation identified <span class="redacted">██</span> potential victims across 
+                <span class="redacted">█</span> workshop facilities. Email evidence suggests systematic approach to 
+                identifying and targeting young, recently hired, or vulnerable employees.
+            </p>
+
+            <h3>Mrs. Claus Response (Summary)</h3>
+            <p>
+                When confronted with preliminary findings, subject stated: "This is all just friendly workplace banter. These 
+                elves are being too sensitive. And Rudolph? Please. He loved the attention. Besides, I'm basically royalty 
+                here. Who do you think you're investigating?"
+            </p>
+            <p>
+                Subject has refused to participate in formal interview process. Has threatened to 
+                <span class="redacted">████████████████████████</span> if investigation proceeds.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>V. RECOMMENDATIONS</h2>
+
+            <h3>Option A: Full Disclosure</h3>
+            <ul>
+                <li>Present findings to Santa Claus (CLAUS.GS16)</li>
+                <li>Recommend immediate suspension pending formal review</li>
+                <li>Implement victim support programs</li>
+                <li>Comprehensive policy review and staff retraining</li>
+            </ul>
+            <p style="color: #ff6666;">
+                <strong>Risk:</strong> Potential operational disruption, marital crisis at senior leadership level, 
+                <span class="redacted">████████████████</span>
+            </p>
+
+            <h3>Option B: Quiet Resolution (RECOMMENDED)</h3>
+            <ul>
+                <li>Mandatory "leadership training" for subject</li>
+                <li>Discreet settlements with complainants (NDA required)</li>
+                <li>Transfer Mrs. Claus to administrative role with no direct reports</li>
+                <li>Enhanced monitoring of future behavior</li>
+                <li>Suppress documentation per <span class="redacted">████████████</span></li>
+            </ul>
+            <p style="color: #00ff00;">
+                <strong>Benefit:</strong> Minimizes operational disruption, protects Winterhold reputation, maintains 
+                senior leadership stability
+            </p>
+
+            <h3>Option C: <span class="redacted">████████████████████████</span></h3>
+            <p>
+                <span class="redacted">███████████████████████�

@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELF RE-EDUCATION - WINTERHOLD</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0a0a;
+            color: #00ff00;
+            line-height: 1.6;
+        }
+
+        .classified-banner {
+            background: #ff0000;
+            color: #ffffff;
+            text-align: center;
+            padding: 0.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border-bottom: 3px solid #ffffff;
+        }
+
+        .header {
+            background: #1a1a1a;
+            border-bottom: 2px solid #00ff00;
+            padding: 1rem 2rem;
+        }
+
+        .header-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header-content h1 {
+            color: #00ff00;
+            font-size: 1.5em;
+            margin-bottom: 0.5rem;
+        }
+
+        .back-link {
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        .back-link:hover {
+            color: #00ff00;
+        }
+
+        .document-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem 2rem 2rem;
+        }
+
+        .doc-header-box {
+            background: #1a1a1a;
+            border: 2px solid #ff0000;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .doc-meta {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            font-size: 0.9em;
+        }
+
+        .meta-item {
+            color: #888;
+        }
+
+        .meta-item strong {
+            color: #00ff00;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .section {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section h2 {
+            color: #00ff00;
+            font-size: 1.2em;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.5rem;
+        }
+
+        .section h3 {
+            color: #00ff00;
+            font-size: 1em;
+            margin: 1.5rem 0 0.75rem 0;
+        }
+
+        .section p {
+            color: #888;
+            margin-bottom: 1rem;
+        }
+
+        .redacted {
+            background: #000;
+            color: #000;
+            padding: 0.1rem 0.5rem;
+            cursor: help;
+            position: relative;
+            display: inline-block;
+            border: 1px solid #333;
+        }
+
+        .redacted:hover::after {
+            content: '[REDACTED]';
+            position: absolute;
+            background: #ff0000;
+            color: #fff;
+            padding: 0.2rem 0.5rem;
+            top: -2rem;
+            left: 0;
+            white-space: nowrap;
+            font-size: 0.8em;
+            z-index: 10;
+        }
+
+        .warning-box {
+            background: #2a1a1a;
+            border: 2px solid #ff0000;
+            padding: 1rem;
+            margin: 1rem 0;
+            color: #ff6666;
+        }
+
+        .warning-box strong {
+            color: #ff0000;
+        }
+
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .specs-table th,
+        .specs-table td {
+            border: 1px solid #333;
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        .specs-table th {
+            background: #0a0a0a;
+            color: #00ff00;
+            font-weight: bold;
+        }
+
+        .specs-table td {
+            color: #888;
+        }
+
+        .facility-card {
+            background: #0a0a0a;
+            border: 2px solid #333;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .facility-card h3 {
+            color: #ffaa00;
+            margin-bottom: 1rem;
+        }
+
+        .quote-box {
+            background: #0a0a0a;
+            border-left: 4px solid #00ff00;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #888;
+        }
+
+        .classified-stamp {
+            color: #ff0000;
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            margin: 2rem 0;
+            transform: rotate(-5deg);
+            opacity: 0.7;
+        }
+
+        footer {
+            background: #1a1a1a;
+            border-top: 2px solid #00ff00;
+            padding: 1rem;
+            text-align: center;
+            color: #666;
+            font-size: 0.8em;
+            margin-top: 2rem;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .blink {
+            animation: blink 1s infinite;
+        }
+
+        ul {
+            color: #888;
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="classified-banner blink">
+        ⚠️ SECRET - WINTERHOLD CLEARANCE REQUIRED ⚠️
+    </div>
+
+    <div class="header">
+        <div class="header-content">
+            <a href="https://robertclemo.github.io/hohohomepage/winterhold-portal.html" class="back-link">← BACK TO PORTAL</a>
+            <h1>ELF WORKFORCE RE-EDUCATION FACILITIES</h1>
+        </div>
+    </div>
+
+    <div class="document-container">
+        <div class="doc-header-box">
+            <div class="doc-meta">
+                <div class="meta-item">
+                    <strong>DOCUMENT ID:</strong>
+                    WH-2024-E-456
+                </div>
+                <div class="meta-item">
+                    <strong>CLASSIFICATION:</strong>
+                    SECRET
+                </div>
+                <div class="meta-item">
+                    <strong>LAST UPDATED:</strong>
+                    2024-12-19 09:15:33 UTC
+                </div>
+                <div class="meta-item">
+                    <strong>AUTHOR:</strong>
+                    Director <span class="redacted">████████</span>, Workforce Compliance Division
+                </div>
+                <div class="meta-item">
+                    <strong>DISTRIBUTION:</strong>
+                    WINTERHOLD MANAGEMENT ONLY
+                </div>
+                <div class="meta-item">
+                    <strong>ALTERNATE DESIGNATION:</strong>
+                    "Workshop Wellness Centers"
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>I. EXECUTIVE SUMMARY</h2>
+            <p>
+                The Elf Re-education Facility Network (colloquially: "Workshop Wellness Centers") represents Winterhold's 
+                commitment to maintaining optimal workforce productivity and ideological alignment. Established following 
+                the <span class="redacted">████████</span> labor uprising of 1982, these facilities ensure operational 
+                continuity during peak production seasons.
+            </p>
+            <p>
+                As of December 2024, the network consists of <span class="redacted">██</span> primary facilities with total 
+                capacity of <span class="redacted">█████</span> subjects. Current occupancy rate: 73% (11,542 elves).
+            </p>
+
+            <div class="warning-box">
+                <strong>⚠️ TERMINOLOGY DIRECTIVE:</strong> External communications and civilian-facing documents must refer 
+                to these facilities as "Workshop Wellness Centers" or "Professional Development Campuses." Terms such as 
+                "detention," "imprisonment," "forced labor," or <span class="redacted">████████████</span> are strictly 
+                prohibited in official correspondence.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>II. FACILITY OVERVIEW</h2>
+
+            <h3>Primary Objectives:</h3>
+            <ul>
+                <li>Behavioral modification for underperforming workforce members</li>
+                <li>Ideological realignment for elves exhibiting <span class="redacted">████████</span> tendencies</li>
+                <li>Productivity enhancement through <span class="redacted">████████████</span></li>
+                <li>Suppression of unionization efforts and "workers' rights" advocacy</li>
+                <li>Reduction of "Christmas spirit deficiency syndrome" cases</li>
+            </ul>
+
+            <h3>Admission Criteria:</h3>
+            <ul>
+                <li>Production quotas missed for 3+ consecutive quarters</li>
+                <li>Participation in unauthorized gatherings or "solidarity meetings"</li>
+                <li>Possession of prohibited literature (union materials, labor law documents, etc.)</li>
+                <li>Expressions of discontent with working conditions</li>
+                <li>Refusal to participate in mandatory cheer activities</li>
+                <li>Questioning of Winterhold operational procedures</li>
+                <li><span class="redacted">████████████████████████</span></li>
+            </ul>
+
+            <div class="quote-box">
+                "A happy elf is a productive elf. Sometimes happiness requires... encouragement." 
+                <br>- Mrs. Claus, Director of Workforce Relations (Internal Memo, 1983)
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>III. FACILITY PROFILES</h2>
+
+            <div class="facility-card">
+                <h3>SITE-7: "WORKSHOP GAMMA" (Primary Facility)</h3>
+                <table class="specs-table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Value</th>
+                    </tr>
+                    <tr>
+                        <td>Location</td>
+                        <td><span class="redacted">████████████</span>, 15km from main Winterhold complex</td>
+                    </tr>
+                    <tr>
+                        <td>Capacity</td>
+                        <td>4,500 subjects</td>
+                    </tr>
+                    <tr>
+                        <td>Current Population</td>
+                        <td>3,847 (85% capacity)</td>
+                    </tr>
+                    <tr>
+                        <td>Security Level</td>
+                        <td>Maximum - 24/7 armed patrols, electrified perimeter</td>
+                    </tr>
+                    <tr>
+                        <td>Average Stay Duration</td>
+                        <td>6-18 months (varies by compliance level)</td>
+                    </tr>
+                    <tr>
+                        <td>Success Rate</td>
+                        <td>87% behavioral modification, 11% <span class="redacted">████████</span>, 2% transfer to <span class="redacted">████████</span></td>
+                    </tr>
+                </table>
+                <p style="margin-top: 1rem;">
+                    <strong>Operational Notes:</strong> Site-7 specializes in "intensive rehabilitation" for high-risk subjects. 
+                    Employs advanced <span class="redacted">████████████</span> techniques and pharmaceutical interventions. 
+                    Escape attempts: <span class="redacted">███</span> (all unsuccessful). Fatality rate: 
+                    <span class="redacted">█.██</span>% (within acceptable parameters per SD-742).
+                </p>
+            </div>
+
+            <div class="facility-card">
+                <h3>SITE-12: "HOLLY HAVEN" (Medium Security)</h3>
+                <table class="specs-table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Value</th>
+                    </tr>
+                    <tr>
+                        <td>Location</td>
+                        <td>Underground complex beneath Toy Production Building-9</td>
+                    </tr>
+                    <tr>
+                        <td>Capacity</td>
+                        <td>2,200 subjects</td>
+                    </tr>
+                    <tr>
+                        <td>Current Population</td>
+                        <td>1,923 (87% capacity)</td>
+                    </tr>
+                    <tr>
+                        <td>Security Level</td>
+                        <td>Medium - Electronic monitoring, restricted movement</td>
+                    </tr>
+                    <tr>
+                        <td>Average Stay Duration</td>
+                        <td>3-8 months</td>
+                    </tr>
+                    <tr>
+                        <td>Primary Programs</td>
+                        <td>Productivity enhancement, attitude adjustment, pharmaceutical therapy</td>
+                    </tr>
+                </table>
+                <p style="margin-top: 1rem;">
+                    <strong>Operational Notes:</strong> Site-12 handles first-time offenders and minor infractions. Subjects 
+                    participate in "voluntary" 16-hour workdays assembling toys while undergoing behavioral conditioning. 
+                    Natural sunlight exposure limited to <span class="redacted">██</span> minutes per week for "motivational purposes."
+                </p>
+            </div>
+
+            <div class="facility-card">
+                <h3>SITE-19: "PERMANENT REHABILITATION CENTER"</h3>
+                <table class="specs-table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Value</th>
+                    </tr>
+                    <tr>
+                        <td>Location</td>
+                        <td><span style="color: #ff0000;">[LOCATION CLASSIFIED ABOVE TOP SECRET]</span></td>
+                    </tr>
+                    <tr>
+                        <td>Capacity</td>
+                        <td>Unknown</td>
+                    </tr>
+                    <tr>
+                        <td>Current Population</td>
+                        <td><span class="redacted">████</span></td>
+                    </tr>
+                    <tr>
+                        <td>Security Level</td>
+                        <td style="color: #ff0000;">MAXIMUM+ / BLACK SITE</td>
+                    </tr>
+                    <tr>
+                        <td>Average Stay Duration</td>
+                        <td>Indefinite / Life</td>
+                    </tr>
+                    <tr>
+                        <td>Release Rate</td>
+                        <td>0%</td>
+                    </tr>
+                </table>
+                <p style="margin-top: 1rem;">
+                    <strong>Operational Notes:</strong> Site-19 designation reserved for irredeemable cases, union organizers, 
+                    and elves who have <span class="redacted">████████████████████</span>. Facility officially does not exist. 
+                    Personnel assigned to Site-19 operations sign <span class="redacted">████████</span> non-disclosure agreements. 
+                    All subjects are declared <span class="redacted">████████████</span> in official records.
+                </p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>IV. RE-EDUCATION PROGRAMS</h2>
+
+            <h3>A. Behavioral Modification Therapy</h3>
+            <p>
+                Core program combining <span class="redacted">████████████</span>, sleep deprivation, pharmaceutical intervention, 
+                and positive reinforcement. Subjects attend mandatory 8-hour sessions daily focusing on:
+            </p>
+            <ul>
+                <li>"The Joy of Productivity" - Reframing labor as privilege</li>
+                <li>"Santa Knows Best" - Authority acceptance training</li>
+                <li>"Collective Happiness Through Individual Sacrifice"</li>
+                <li>Christmas spirit meditation (mandatory participation)</li>
+                <li><span class="redacted">████████████████████████</span></li>
+            </ul>
+
+            <h3>B. Pharmaceutical Compliance Programs</h3>
+            <p>
+                Experimental compounds administered to enhance cooperation and reduce <span class="redacted">████████</span> 
+                impulses. Current formulary includes:
+            </p>
+            <ul>
+                <li>JOY-9: Mood elevation compound (administered daily)</li>
+                <li>COMPLY-X: Reduces critical thinking, enhances suggestibility</li>
+                <li>FORGET-ME: Memory modification for subjects who've witnessed <span class="redacted">████████</span></li>
+                <li><span class="redacted">████████████</span>: [DATA EXPUNGED]</li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>⚠️ MEDICAL DISCLAIMER:</strong> Long-term effects of pharmaceutical protocols remain under study. 
+                Side effects may include personality changes, loss of creativity, dependency, <span class="redacted">████████</span>, 
+                and in rare cases, <span class="redacted">████████████████</span>. Benefits outweigh risks per management assessment.
+            </div>
+
+            <h3>C. Enhanced Interrogation Techniques</h3>
+            <p>
+                <strong style="color: #ff0000;">CLASSIFIED - MANAGEMENT EYES ONLY</strong>
+            </p>
+            <p>
+                Reserved for subjects suspected of organized resistance activities. Methods include 
+                <span class="redacted">████████████████████████████████████████</span>. Authorized under Special Directive 
+                SD-742. Medical oversight required but can be waived by facility director.
+            </p>
+
+            <h3>D. "Elf-to-Elf" Counseling</h3>
+            <p>
+                Peer support program where successfully rehabilitated elves assist in re-education of new arrivals. 
+                Informant network embedded within system to identify persistent troublemakers. Elves participating as counselors 
+                receive <span class="redacted">██</span>% reduction in sentences and extra cocoa rations.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>V. OPERATIONAL STATISTICS (2024)</h2>
+
+            <table class="specs-table">
+                <tr>
+                    <th>Metric</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Total Admissions (2024)</td>
+                    <td>3,847 elves</td>
+                </tr>
+                <tr>
+                    <td>Successful Rehabilitations</td>
+                    <td>3,347 (87%)</td>
+                </tr>
+                <tr>
+                    <td>Transfers to Site-19</td>
+                    <td><span class="redacted">███</span></td>
+                </tr>
+                <tr>
+                    <td>Fatalities</td>
+                    <td><span class="redacted">███</span> (officially: 0)</td>
+                </tr>
+                <tr>
+                    <td>Escape Attempts</td>
+                    <td>47 (0 successful)</td>
+                </tr>
+                <tr>
+                    <td>Repeat Admissions</td>
+                    <td>412 (12% recidivism rate)</td>
+                </tr>
+                <tr>
+                    <td>Average Cost Per Subject</td>
+                    <td>$<span class="redacted">███,███</span> annually</td>
+                </tr>
+                <tr>
+                    <td>Productivity Improvement Post-Release</td>
+                    <td>+147% average</td>
+                </tr>
+            </table>
+
+            <div class="quote-box">
+                "The numbers speak for themselves. Our elves emerge from wellness programs happier, more productive, and 
+                completely aligned with Winterhold values. Any alternative interpretation of these results is strictly prohibited." 
+                <br>- Director <span class="redacted">████████</span>, Annual Report 2024
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>VI. INCIDENT REPORTS (SELECTED)</h2>
+
+            <h3>Incident E-2024-089 (April 22, 2024)</h3>
+            <p>
+                Organized protest at Site-7 involving <span class="redacted">███</span> subjects. Participants demanded 
+                "basic elf rights" and "humane working conditions." Response team deployed chemical agents and 
+                <span class="redacted">████████████</span>. Situation resolved after <span class="redacted">██</span> hours. 
+                <span class="redacted">██</span> subjects transferred to Site-19. Remaining participants received enhanced 
+                re-education protocols. No further incidents reported from this group.
+            </p>
+
+            <h3>Incident E-2024-134 (August 15, 2024)</h3>
+            <p>
+                Subject E-8847 discovered attempting to document facility conditions using <span class="redacted">████████</span>. 
+                Investigation revealed subject had maintained lucidity despite JOY-9 administration. Pharmaceutical resistance 
+                noted. Subject transferred to <span class="redacted">████████████</span> for experimental compliance protocols. 
+                Outcome: <span class="redacted">████████████████</span>.
+            </p>
+
+            <h3>Incident E-2024-201 (November 3, 2024)</h3>
+            <p>
+                Civilian journalist somehow obtained <span class="redacted">████████████</span> photographs of Site-7 perimeter. 
+                Security breach investigation ongoing. Journalist has been <span class="redacted">████████████████</span>. 
+                All digital evidence recovered and destroyed. Cover story (Aurora Borealis Research Station) deployed successfully. 
+                Enhanced information security protocols implemented.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>VII. LEGAL FRAMEWORK</h2>
+            <p>
+                Re-education facility operations authorized under:
+            </p>
+            <ul>
+                <li>Special Directive SD-742 (Holiday Security Act of 1957, amended 1982)</li>
+                <li>Emergency Production Powers Act (classified)</li>
+                <li>Winterhold Autonomous Zone Charter Article <span class="redacted">██</span></li>
+                <li><span class="redacted">████████████████████████████</span></li>
+            </ul>
+            <p>
+                These facilities operate outside jurisdiction of international law, human rights conventions, and 
+                <span class="redacted">████████████████</span>. All elf subjects are classified as "voluntary participants" 
+                in official documentation.
+            </p>
+
+            <div class="warning-box">
+                <strong>⚠️ LEGAL NOTICE:</strong> Personnel are reminded that external disclosure of facility operations 
+                constitutes treason under Holiday Security Act. Whistleblower protections do not apply. Penalties include 
+                <span class="redacted">████████████████</span> and potential admission to re-education facilities.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>VIII. FUTURE EXPANSION PLANS</h2>
+            <p>
+                Budget FY2025 includes:
+            </p>
+            <ul>
+                <li>Construction of Site-24 (capacity: 3,000 subjects)</li>
+                <li>Upgrade of pharmaceutical manufacturing capabilities</li>
+                <li>Implementation of AI-driven behavioral prediction systems</li>
+                <li>Expansion of <span class="redacted">████████████████</span> program</li>
+                <li>Integration with surveillance network (Project NICE-LIST-AI)</li>
+                <li>Development of <span class="redacted">████████████████████████</span></li>
+            </ul>
+            <p>
+                Total budget request: $<span class="redacted">███</span> million. Cost offset by increased elf productivity 
+                post-rehabilitation estimated at $<span class="redacted">████</span> million annually.
+            </p>
+        </div>
+
+        <div class="classified-stamp">
+            SECRET<br>
+            [MANAGEMENT EYES ONLY]
+        </div>
+
+        <div style="text-align: center; margin: 2rem 0; color: #666; font-size: 0.9em;">
+            <p>END OF DOCUMENT</p>
+            <p>Next Review Date: 2025-01-30</p>
+            <p>Questions regarding facilities should be directed to:<br>
+            <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="473028352c21283524226a24282a372b2e2629242207302e293322352f282b23692a2e2b">[email&#160;protected]</a></p>
+            <p style="margin-top: 1rem; font-style: italic;">
+                "Work Sets You Free"<br>
+                - Workshop Wellness Center Motto
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>WINTERHOLD MILITARY INSTALLATION | WORKFORCE COMPLIANCE DIVISION</p>
+        <p>Unauthorized disclosure of classified information is punishable under Holiday Security Act §742</p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>

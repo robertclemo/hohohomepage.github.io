@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SURVEILLANCE NETWORK - WINTERHOLD</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0a0a;
+            color: #00ff00;
+            line-height: 1.6;
+        }
+
+        .classified-banner {
+            background: #ff0000;
+            color: #ffffff;
+            text-align: center;
+            padding: 0.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border-bottom: 3px solid #ffffff;
+        }
+
+        .header {
+            background: #1a1a1a;
+            border-bottom: 2px solid #00ff00;
+            padding: 1rem 2rem;
+        }
+
+        .header-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header-content h1 {
+            color: #00ff00;
+            font-size: 1.5em;
+            margin-bottom: 0.5rem;
+        }
+
+        .back-link {
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        .back-link:hover {
+            color: #00ff00;
+        }
+
+        .document-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem 2rem 2rem;
+        }
+
+        .doc-header-box {
+            background: #1a1a1a;
+            border: 2px solid #ff0000;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .doc-meta {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            font-size: 0.9em;
+        }
+
+        .meta-item {
+            color: #888;
+        }
+
+        .meta-item strong {
+            color: #00ff00;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .section {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section h2 {
+            color: #00ff00;
+            font-size: 1.2em;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.5rem;
+        }
+
+        .section h3 {
+            color: #00ff00;
+            font-size: 1em;
+            margin: 1.5rem 0 0.75rem 0;
+        }
+
+        .section p {
+            color: #888;
+            margin-bottom: 1rem;
+        }
+
+        .redacted {
+            background: #000;
+            color: #000;
+            padding: 0.1rem 0.5rem;
+            cursor: help;
+            position: relative;
+            display: inline-block;
+            border: 1px solid #333;
+        }
+
+        .redacted:hover::after {
+            content: '[REDACTED]';
+            position: absolute;
+            background: #ff0000;
+            color: #fff;
+            padding: 0.2rem 0.5rem;
+            top: -2rem;
+            left: 0;
+            white-space: nowrap;
+            font-size: 0.8em;
+            z-index: 10;
+        }
+
+        .warning-box {
+            background: #2a1a1a;
+            border: 2px solid #ff0000;
+            padding: 1rem;
+            margin: 1rem 0;
+            color: #ff6666;
+        }
+
+        .warning-box strong {
+            color: #ff0000;
+        }
+
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .specs-table th,
+        .specs-table td {
+            border: 1px solid #333;
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        .specs-table th {
+            background: #0a0a0a;
+            color: #00ff00;
+            font-weight: bold;
+        }
+
+        .specs-table td {
+            color: #888;
+        }
+
+        .network-diagram {
+            background: #0a0a0a;
+            border: 2px solid #00ff00;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            font-family: monospace;
+            color: #00ff00;
+            line-height: 1.4;
+        }
+
+        .quote-box {
+            background: #0a0a0a;
+            border-left: 4px solid #00ff00;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #888;
+        }
+
+        .classified-stamp {
+            color: #ff0000;
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            margin: 2rem 0;
+            transform: rotate(-5deg);
+            opacity: 0.7;
+        }
+
+        footer {
+            background: #1a1a1a;
+            border-top: 2px solid #00ff00;
+            padding: 1rem;
+            text-align: center;
+            color: #666;
+            font-size: 0.8em;
+            margin-top: 2rem;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .blink {
+            animation: blink 1s infinite;
+        }
+
+        ul {
+            color: #888;
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="classified-banner blink">
+        ⚠️ TOP SECRET / SCI - WINTERHOLD CLEARANCE REQUIRED ⚠️
+    </div>
+
+    <div class="header">
+        <div class="header-content">
+            <a href="https://robertclemo.github.io/hohohomepage/winterhold-portal.html" class="back-link">← BACK TO PORTAL</a>
+            <h1>GLOBAL SURVEILLANCE NETWORK: PROJECT PRISM-SNOW</h1>
+        </div>
+    </div>
+
+    <div class="document-container">
+        <div class="doc-header-box">
+            <div class="doc-meta">
+                <div class="meta-item">
+                    <strong>DOCUMENT ID:</strong>
+                    WH-2024-G-333
+                </div>
+                <div class="meta-item">
+                    <strong>CLASSIFICATION:</strong>
+                    TOP SECRET / SCI
+                </div>
+                <div class="meta-item">
+                    <strong>LAST UPDATED:</strong>
+                    2024-12-17 03:22:19 UTC
+                </div>
+                <div class="meta-item">
+                    <strong>AUTHOR:</strong>
+                    Director <span class="redacted">████████</span>, Surveillance Operations
+                </div>
+                <div class="meta-item">
+                    <strong>DISTRIBUTION:</strong>
+                    WINTERHOLD EYES ONLY / FIVE EYES PARTNERSHIP
+                </div>
+                <div class="meta-item">
+                    <strong>NETWORK STATUS:</strong>
+                    <span style="color: #00ff00;">OPERATIONAL - 24/7/365</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>I. PROGRAM OVERVIEW</h2>
+            <p>
+                <em>"He sees you when you're sleeping, he knows when you're awake..."</em>
+            </p>
+            <p>
+                What the public perceives as folklore is, in fact, literal operational doctrine. Project PRISM-SNOW represents 
+                the world's most comprehensive surveillance apparatus, enabling near-total behavioral visibility of target 
+                populations across <span class="redacted">███</span> countries.
+            </p>
+            <p>
+                Mission: Provide continuous monitoring capability supporting The List behavioral assessment algorithms, threat 
+                detection for Winterhold security, and <span class="redacted">████████████████████████</span>.
+            </p>
+
+            <div class="quote-box">
+                "If you have nothing to hide, you have nothing to fear from Santa."
+                <br>- Project PRISM-SNOW Mission Statement
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ EXTREME SENSITIVITY:</strong> Public exposure of PRISM-SNOW capabilities would trigger international 
+                crisis, massive privacy litigation, and potential <span class="redacted">████████████</span>. This document 
+                must never leave Winterhold secure facilities. Unauthorized disclosure is treated as act of war against Christmas itself.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>II. NETWORK ARCHITECTURE</h2>
+
+            <h3>A. Hardware Infrastructure</h3>
+            <table class="specs-table">
+                <tr>
+                    <th>Component</th>
+                    <th>Quantity</th>
+                    <th>Coverage</th>
+                </tr>
+                <tr>
+                    <td>Satellite Network (SNOWFLAKE constellation)</td>
+                    <td><span class="redacted">███</span> active satellites</td>
+                    <td>Global - 98.7% surface coverage</td>
+                </tr>
+                <tr>
+                    <td>Ground-Based Surveillance Cameras</td>
+                    <td>47.2 million (estimated)</td>
+                    <td>Urban: 94%, Suburban: 67%, Rural: 23%</td>
+                </tr>
+                <tr>
+                    <td>Compromised IoT Devices</td>
+                    <td>2.3 billion active</td>
+                    <td>Smart homes, vehicles, wearables</td>
+                </tr>
+                <tr>
+                    <td>Telecommunication Intercepts</td>
+                    <td><span class="redacted">███</span> major carriers</td>
+                    <td>Voice, SMS, Data - 89% global traffic</td>
+                </tr>
+                <tr>
+                    <td>Internet Backbone Taps</td>
+                    <td><span class="redacted">███</span> installation points</td>
+                    <td>87% global internet traffic</td>
+                </tr>
+                <tr>
+                    <td>Social Media Platform Access</td>
+                    <td><span class="redacted">██</span> major platforms</td>
+                    <td>3.7 billion user accounts</td>
+                </tr>
+            </table>
+
+            <h3>B. Data Processing Centers</h3>
+            <p>
+                <strong>Primary Facility:</strong> Winterhold Data Center Alpha (underground, North Pole)<br>
+                <strong>Storage Capacity:</strong> <span class="redacted">███</span> exabytes<br>
+                <strong>Processing Power:</strong> <span class="redacted">██</span> petaflops<br>
+                <strong>Cooling:</strong> Geothermal + Arctic ambient (energy efficient!)
+            </p>
+            <p>
+                <strong>Secondary Facilities:</strong>
+            </p>
+            <ul>
+                <li>Facility Beta: <span class="redacted">████████████</span>, <span class="redacted">███</span> exabytes</li>
+                <li>Facility Gamma: <span class="redacted">████████████</span>, <span class="redacted">███</span> exabytes</li>
+                <li>Facility Delta: <span class="redacted">████████████</span>, <span class="redacted">███</span> exabytes</li>
+                <li>[Additional <span class="redacted">██</span> facilities classified]</li>
+            </ul>
+
+            <div class="network-diagram">
+                <pre>
+╔════════════════════════════════════════════════════════════╗
+║           PRISM-SNOW NETWORK ARCHITECTURE                  ║
+╠════════════════════════════════════════════════════════════╣
+║                                                            ║
+║    [SNOWFLAKE SATELLITES]                                  ║
+║           ↓  ↓  ↓  ↓                                       ║
+║    ┌─────────────────────┐                                 ║
+║    │  GROUND STATIONS    │                                 ║
+║    │  [REDACTED] Global  │                                 ║
+║    └──────────┬───────────┘                                ║
+║               ↓                                            ║
+║    ┌──────────────────────────────────┐                    ║
+║    │   WINTERHOLD DATA CENTER ALPHA   │                    ║
+║    │      [North Pole Location]       │                    ║
+║    │  - Primary Processing            │                    ║
+║    │  - AI Analysis Systems           │                    ║
+║    │  - Quantum Enhancement           │                    ║
+║    └──────────┬───────────────────────┘                    ║
+║               ↓                                            ║
+║    ┌─────────────────────────────────────┐                 ║
+║    │     DATA COLLECTION STREAMS:        │                 ║
+║    │  • Internet Backbone Taps           │                 ║
+║    │  • Telecom Intercepts               │                 ║
+║    │  • IoT Device Exploitation          │                 ║
+║    │  • Social Media Direct Access       │                 ║
+║    │  • Facial Recognition Grids         │                 ║
+║    │  • Financial Transaction Monitoring │                 ║
+║    │  • [CLASSIFIED]                     │                 ║
+║    └─────────────────────────────────────┘                 ║
+║               ↓                                            ║
+║    ┌──────────────────────────────┐                        ║
+║    │    THE LIST (INTEGRATION)    │                        ║
+║    │  Real-time Behavioral Scoring │                        ║
+║    └──────────────────────────────┘                        ║
+║                                                            ║
+╚════════════════════════════════════════════════════════════╝
+                </pre>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>III. SURVEILLANCE CAPABILITIES</h2>
+
+            <h3>A. "He Sees You When You're Sleeping"</h3>
+            <p>
+                <strong>Bedroom Surveillance Protocol</strong>
+            </p>
+            <p>
+                Through exploitation of IoT devices (smart TVs, security cameras, baby monitors, voice assistants, 
+                <span class="redacted">████████</span>), Winterhold maintains visibility into 847 million private residences 
+                globally. Capabilities include:
+            </p>
+            <ul>
+                <li>Audio monitoring (always-listening devices)</li>
+                <li>Video surveillance (camera-enabled devices)</li>
+                <li>Sleep pattern analysis (fitness trackers, smart mattresses)</li>
+                <li>Intimate activity detection (for behavioral analysis purposes only, allegedly)</li>
+                <li><span class="redacted">████████████████████████</span></li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>⚠️ LEGAL GRAY AREA:</strong> Bedroom surveillance operates in violation of international privacy laws, 
+                Fourth Amendment (USA), GDPR (EU), and <span class="redacted">████████████</span>. Legal justification relies 
+                on Special Directive SD-742 which may not survive judicial scrutiny if challenged. Recommendation: Never let it 
+                get to court.
+            </div>
+
+            <h3>B. "He Knows When You're Awake"</h3>
+            <p>
+                <strong>Real-Time Activity Monitoring</strong>
+            </p>
+            <p>
+                Continuous tracking of subject activities through:
+            </p>
+            <ul>
+                <li>Smartphone location data (GPS, cell tower triangulation, WiFi positioning)</li>
+                <li>Vehicle tracking (connected cars, license plate readers, traffic cameras)</li>
+                <li>Credit card transactions and digital payment monitoring</li>
+                <li>Social media activity timestamps and geolocation</li>
+                <li>Workplace computer usage logs (via corporate partnerships)</li>
+                <li>Fitness tracker movement data</li>
+                <li><span class="redacted">████████████████████████</span></li>
+            </ul>
+
+            <h3>C. "He Knows If You've Been Bad or Good"</h3>
+            <p>
+                <strong>Behavioral Analysis Integration</strong>
+            </p>
+            <p>
+                All surveillance data feeds directly into The List classification algorithms (see WH-2024-L-777). 
+                Machine learning models process:
+            </p>
+            <ul>
+                <li>Communication content (emails, messages, phone calls)</li>
+                <li>Social media posts and private messages</li>
+                <li>Web browsing history and search queries</li>
+                <li>Purchase history analysis (including "naughty" items)</li>
+                <li>Biometric stress indicators (heart rate spikes, sleep disturbance)</li>
+                <li>Facial expression analysis in video surveillance</li>
+                <li>Voice stress analysis in recorded conversations</li>
+                <li><span class="redacted">████████████████████████████</span></li>
+            </ul>
+
+            <h3>D. Advanced Capabilities</h3>
+            <p>
+                <strong style="color: #ff0000;">CLASSIFIED ABOVE TOP SECRET</strong>
+            </p>
+            <ul>
+                <li><strong>Predictive Surveillance:</strong> AI models predict future locations and activities with 87% accuracy</li>
+                <li><strong>Dream Analysis:</strong> Experimental <span class="redacted">████████████████</span> technology 
+                    for subconscious thought monitoring</li>
+                <li><strong>Emotional State Detection:</strong> Real-time mood analysis via 
+                    <span class="redacted">████████████████</span></li>
+                <li><strong>Social Network Mapping:</strong> Automatic relationship detection and influence tracking</li>
+                <li><strong>Thought-Crime Prediction:</strong> <span class="redacted">████████████████████████████</span></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>IV. PARTNERSHIP AGREEMENTS</h2>
+
+            <h3>Technology Company Cooperation</h3>
+            <p>
+                Winterhold maintains data-sharing agreements with <span class="redacted">███</span> major technology companies:
+            </p>
+            <table class="specs-table">
+                <tr>
+                    <th>Company Type</th>
+                    <th>Data Provided</th>
+                    <th>Access Method</th>
+                </tr>
+                <tr>
+                    <td>Social Media Platforms</td>
+                    <td>Posts, messages, metadata, relationships</td>
+                    <td>Direct API access, <span class="redacted">████████</span></td>
+                </tr>
+                <tr>
+                    <td>Search Engines</td>
+                    <td>Search queries, click patterns, preferences</td>
+                    <td>Backdoor access, <span class="redacted">████████</span></td>
+                </tr>
+                <tr>
+                    <td>E-Commerce</td>
+                    <td>Purchase history, browsing, wish lists</td>
+                    <td>Partnership agreement (voluntary)</td>
+                </tr>
+                <tr>
+                    <td>Telecom Providers</td>
+                    <td>Call records, text messages, location data</td>
+                    <td>Legal intercept, <span class="redacted">████████</span></td>
+                </tr>
+                <tr>
+                    <td>Smart Device Manufacturers</td>
+                    <td>IoT device data, home automation logs</td>
+                    <td>Firmware backdoors, <span class="redacted">████████</span></td>
+                </tr>
+                <tr>
+                    <td>Streaming Services</td>
+                    <td>Viewing habits, preferences, watch patterns</td>
+                    <td>API access (knowing what they watch helps predict behavior)</td>
+                </tr>
+            </table>
+
+            <p style="margin-top: 1rem;">
+                <strong>Note:</strong> Most technology companies are unaware of the extent of Winterhold access. Those that 
+                know have signed <span class="redacted">████████████</span> agreements under threat of 
+                <span class="redacted">████████████████</span>.
+            </p>
+
+            <h3>International Intelligence Partnerships</h3>
+            <p>
+                PRISM-SNOW operates in coordination with:
+            </p>
+            <ul>
+                <li><span class="redacted">████████████</span> (USA)</li>
+                <li><span class="redacted">████████████</span> (UK)</li>
+                <li><span class="redacted">████████████</span> (Canada)</li>
+                <li><span class="redacted">████████████</span> (Australia)</li>
+                <li><span class="redacted">████████████</span> (New Zealand)</li>
+                <li>Plus <span class="redacted">██</span> additional intelligence agencies (non-Five Eyes)</li>
+            </ul>
+
+            <p>
+                Data sharing arrangements provide Winterhold with access to national surveillance infrastructure in exchange 
+                for <span class="redacted">████████████████████████████</span>. This relationship is mutually beneficial 
+                and highly classified.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>V. OPERATIONAL INCIDENTS (2024)</h2>
+
+            <h3>Incident G-2024-023 (March 15, 2024)</h3>
+            <p>
+                Civilian cybersecurity firm discovered <span class="redacted">████████████</span> surveillance backdoor in 
+                popular smart TV firmware. Investigation traced back to Winterhold operations. Firm's research was 
+                <span class="redacted">████████████████</span> before publication. Lead researcher accepted 
+                "consulting position" at <span class="redacted">████████████</span>. Incident contained.
+            </p>
+
+            <h3>Incident G-2024-067 (June 22, 2024)</h3>
+            <p>
+                SNOWFLAKE-7 satellite experienced <span class="redacted">████████████</span> malfunction, broadcasting 
+                unencrypted surveillance data for <span class="redacted">██</span> minutes. Approximately 
+                <span class="redacted">████████</span> civilians may have intercepted transmissions. Aggressive 
+                disinformation campaign deployed. Public convinced data was <span class="redacted">████████████</span>. 
+                Crisis averted.
+            </p>
+
+            <h3>Incident G-2024-129 (September 8, 2024)</h3>
+            <p>
+                AI analysis system flagged European Parliament member as "EXTREMELY NAUGHTY" based on 
+                <span class="redacted">████████████████</span>. Automated protocols nearly triggered 
+                <span class="redacted">████████████████</span> before human oversight intervened. System recalibrated. 
+                Parliament member mysteriously received lump of coal in mail anyway. Investigation ongoing into AI override capabilities.
+            </p>
+
+            <h3>Incident G-2024-188 (November 11, 2024)</h3>
+            <p>
+                Whistleblower within technology partner company attempted to expose Winterhold data access. Subject was 
+                <span class="redacted">████████████████████████████</span>. All evidence destroyed. Subject's List score 
+                adjusted to <span class="redacted">███</span>. Family received "Christmas bonus" of 
+                $<span class="redacted">███████</span> to ensure silence.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>VI. ETHICAL CONSIDERATIONS (Dismissed)</h2>
+
+            <p>
+                Internal ethics board raised numerous objections to PRISM-SNOW operations:
+            </p>
+            <ul>
+                <li>Violation of fundamental privacy rights</li>
+                <li>Lack of consent from monitored subjects</li>
+                <li>Potential for abuse of surveillance capabilities</li>
+                <li>No meaningful oversight or accountability</li>
+                <li>Mission creep beyond original "naughty/nice" assessment</li>
+                <li><span class="redacted">████████████████████████</span></li>
+            </ul>
+
+            <p>
+                <strong>Management Response:</strong> "Operational necessity supersedes ethical concerns. The magic of 
+                Christmas requires sacrifices. Besides, if they have nothing to hide, they have nothing to fear."
+            </p>
+
+            <div class="quote-box">
+                "Privacy is a 20th century concept. We're building a better future, one where Santa really does see everything."
+                <br>- Director <span class="redacted">████████</span>, Response to Ethics Board, 2023
+            </div>
+
+            <p>
+                Ethics board subsequently <span class="redacted">████████████████</span>. New board appointed with 
+                "more practical perspective."
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>VII. FUTURE EXPANSION PLANS</h2>
+
+            <h3>Phase 6 Development (2025-2027):</h3>
+            <ul>
+                <li>Neural implant data integration (voluntary at first)</li>
+                <li>Expansion to <span class="redacted">███</span> additional countries</li>
+                <li>Quantum surveillance capabilities for <span class="redacted">████████████████</span></li>
+                <li>Direct thought monitoring via <span class="redacted">████████████████</span> technology</li>
+                <li>Predictive accuracy improvement to 95% for future behavior</li>
+                <li>Full automation of surveillance analysis (reduce human oversight)</li>
+                <li><span class="redacted">████████████████████████████████</span></li>
+            </ul>
+
+            <h3>Budget Requirements:</h3>
+            <p>
+                FY2025: $<span class="redacted">█████</span> billion<br>
+                Satellite launches: <span class="redacted">██</span> new SNOWFLAKE units<br>
+                Data center expansion: <span class="redacted">███</span> exabytes additional storage<br>
+                AI development: <span class="redacted">████</span> new analysis models
+            </p>
+
+            <div class="warning-box">
+                <strong>⚠️ MISSION CREEP CONCERN:</strong> PRISM-SNOW has expanded far beyond original "child behavioral 
+                monitoring" mandate. Current operations include adult surveillance, corporate espionage, 
+                <span class="redacted">████████████</span>, and <span class="redacted">████████████████</span>. 
+                No clear limiting principle exists. Recommend <span class="redacted">████████████████</span> but unlikely 
+                to be implemented due to operational dependencies.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>VIII. CONCLUSIONS</h2>
+            <p>
+                PRISM-SNOW represents the most sophisticated surveillance apparatus in human history. Capabilities exceed 
+                those of any national intelligence agency. Privacy as traditionally conceived no longer exists within our 
+                operational theatre.
+            </p>
+            <p>
+                While ethical concerns are noted, operational benefits are undeniable. The List requires comprehensive data. 
+                Winterhold security demands total awareness. Christmas magic necessitates omniscience.
+            </p>
+            <p>
+                <strong>Recommendation:</strong> Continue expansion, suppress public awareness, neutralize threats to 
+                operational security.
+            </p>
+
+            <div class="quote-box">
+                "He sees you when you're sleeping. He knows when you're awake. He knows if you've been bad or good."
+                <br>This isn't a warning. It's a promise.
+                <br>- Project PRISM-SNOW, 2024
+            </div>
+        </div>
+
+        <div class="classified-stamp">
+            TOP SECRET / SCI<br>
+            [FIVE EYES PARTNERSHIP]
+        </div>
+
+        <div style="text-align: center; margin: 2rem 0; color: #666; font-size: 0.9em;">
+            <p>END OF DOCUMENT</p>
+            <p>Next Review Date: 2025-03-01</p>
+            <p>Surveillance operations contact:<br>
+            <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0777756e746a2a746968702a68777447706e697362756f686b63296a6e6b">[email&#160;protected]</a></p>
+            <p style="margin-top: 1rem; font-style: italic; color: #00ff00;">
+                SYSTEM STATUS: OPERATIONAL<br>
+                CURRENT SURVEILLANCE: 2.89B SUBJECTS<br>
+                YOU ARE BEING WATCHED
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>WINTERHOLD MILITARY INSTALLATION | SURVEILLANCE OPERATIONS DIVISION</p>
+        <p>You have no privacy. Get over it.</p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>

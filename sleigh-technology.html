@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLEIGH PROPULSION - WINTERHOLD</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0a0a;
+            color: #00ff00;
+            line-height: 1.6;
+        }
+
+        .classified-banner {
+            background: #ff0000;
+            color: #ffffff;
+            text-align: center;
+            padding: 0.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border-bottom: 3px solid #ffffff;
+        }
+
+        .header {
+            background: #1a1a1a;
+            border-bottom: 2px solid #00ff00;
+            padding: 1rem 2rem;
+        }
+
+        .header-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header-content h1 {
+            color: #00ff00;
+            font-size: 1.5em;
+            margin-bottom: 0.5rem;
+        }
+
+        .back-link {
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        .back-link:hover {
+            color: #00ff00;
+        }
+
+        .document-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem 2rem 2rem;
+        }
+
+        .doc-header-box {
+            background: #1a1a1a;
+            border: 2px solid #ff0000;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .doc-meta {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            font-size: 0.9em;
+        }
+
+        .meta-item {
+            color: #888;
+        }
+
+        .meta-item strong {
+            color: #00ff00;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .section {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section h2 {
+            color: #00ff00;
+            font-size: 1.2em;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.5rem;
+        }
+
+        .section h3 {
+            color: #00ff00;
+            font-size: 1em;
+            margin: 1.5rem 0 0.75rem 0;
+        }
+
+        .section p {
+            color: #888;
+            margin-bottom: 1rem;
+        }
+
+        .redacted {
+            background: #000;
+            color: #000;
+            padding: 0.1rem 0.5rem;
+            cursor: help;
+            position: relative;
+            display: inline-block;
+            border: 1px solid #333;
+        }
+
+        .redacted:hover::after {
+            content: '[REDACTED]';
+            position: absolute;
+            background: #ff0000;
+            color: #fff;
+            padding: 0.2rem 0.5rem;
+            top: -2rem;
+            left: 0;
+            white-space: nowrap;
+            font-size: 0.8em;
+            z-index: 10;
+        }
+
+        .warning-box {
+            background: #2a1a1a;
+            border: 2px solid #ff0000;
+            padding: 1rem;
+            margin: 1rem 0;
+            color: #ff6666;
+        }
+
+        .warning-box strong {
+            color: #ff0000;
+        }
+
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .specs-table th,
+        .specs-table td {
+            border: 1px solid #333;
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        .specs-table th {
+            background: #0a0a0a;
+            color: #00ff00;
+            font-weight: bold;
+        }
+
+        .specs-table td {
+            color: #888;
+        }
+
+        .schematic {
+            background: #0a0a0a;
+            border: 2px solid #00ff00;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            font-family: monospace;
+            color: #00ff00;
+            line-height: 1.4;
+        }
+
+        .quote-box {
+            background: #0a0a0a;
+            border-left: 4px solid #00ff00;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #888;
+        }
+
+        .classified-stamp {
+            color: #ff0000;
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            margin: 2rem 0;
+            transform: rotate(-5deg);
+            opacity: 0.7;
+        }
+
+        footer {
+            background: #1a1a1a;
+            border-top: 2px solid #00ff00;
+            padding: 1rem;
+            text-align: center;
+            color: #666;
+            font-size: 0.8em;
+            margin-top: 2rem;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .blink {
+            animation: blink 1s infinite;
+        }
+
+        ul {
+            color: #888;
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="classified-banner blink">
+        ⚠️ SECRET - WINTERHOLD CLEARANCE REQUIRED ⚠️
+    </div>
+
+    <div class="header">
+        <div class="header-content">
+            <a href="https://robertclemo.github.io/hohohomepage/winterhold-portal.html" class="back-link">← BACK TO PORTAL</a>
+            <h1>SLEIGH PROPULSION SYSTEMS: PROJECT DASHER</h1>
+        </div>
+    </div>
+
+    <div class="document-container">
+        <div class="doc-header-box">
+            <div class="doc-meta">
+                <div class="meta-item">
+                    <strong>DOCUMENT ID:</strong>
+                    WH-2024-S-912
+                </div>
+                <div class="meta-item">
+                    <strong>CLASSIFICATION:</strong>
+                    SECRET
+                </div>
+                <div class="meta-item">
+                    <strong>LAST UPDATED:</strong>
+                    2024-12-12 20:14:52 UTC
+                </div>
+                <div class="meta-item">
+                    <strong>AUTHOR:</strong>
+                    Dr. <span class="redacted">████████</span>, Advanced Propulsion Division
+                </div>
+                <div class="meta-item">
+                    <strong>DISTRIBUTION:</strong>
+                    WINTERHOLD TECHNICAL STAFF
+                </div>
+                <div class="meta-item">
+                    <strong>DEPLOYMENT STATUS:</strong>
+                    <span style="color: #00ff00;">OPERATIONAL - T-13 DAYS</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>I. EXECUTIVE SUMMARY</h2>
+            <p>
+                The public believes Santa's sleigh is pulled by eight (or nine) flying reindeer through sheer Christmas magic. 
+                The reality involves decades of advanced aerospace engineering, exotic propulsion technologies, and physics 
+                that would make NASA engineers weep with envy.
+            </p>
+            <p>
+                Project DASHER represents Winterhold's commitment to solving the impossible problem: delivering 
+                <span class="redacted">████</span> billion presents to <span class="redacted">███</span> million households 
+                across <span class="redacted">███</span> countries in approximately 31 hours (accounting for time zones).
+            </p>
+
+            <div class="quote-box">
+                "Any sufficiently advanced technology is indistinguishable from magic. Fortunately, we have both."
+                <br>- Project DASHER Mission Statement
+            </div>
+
+            <h3>Performance Requirements:</h3>
+            <ul>
+                <li>Maximum speed: Mach 4,200+ (sustained)</li>
+                <li>Global range: 510 million kilometers in 31 hours</li>
+                <li>Payload capacity: <span class="redacted">████</span> tons (fully loaded)</li>
+                <li>Atmospheric operation: Sea level to 120km altitude</li>
+                <li>Stealth requirements: Radar cross-section &lt; 0.001 m²</li>
+                <li>Noise signature: &lt; 15 dB (quieter than snowfall)</li>
+                <li><span class="redacted">████████████████████████</span></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>II. PROPULSION SYSTEMS</h2>
+
+            <h3>A. Primary Drive: Christmas Magic Reactor (CMR-7)</h3>
+            <p>
+                Core propulsion system converts concentrated Christmas spirit into kinetic energy through 
+                <span class="redacted">████████████████</span> process. Fuel source: Pure holiday cheer extracted from 
+                <span class="redacted">████████████████</span>.
+            </p>
+
+            <table class="specs-table">
+                <tr>
+                    <th>Parameter</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Power Output</td>
+                    <td><span class="redacted">████</span> gigawatts (peak)</td>
+                </tr>
+                <tr>
+                    <td>Fuel Type</td>
+                    <td>Refined Christmas Spirit (Grade A-99.7%)</td>
+                </tr>
+                <tr>
+                    <td>Fuel Consumption</td>
+                    <td>847 liters/hour at cruise speed</td>
+                </tr>
+                <tr>
+                    <td>Operational Lifespan</td>
+                    <td>Indefinite (with annual maintenance)</td>
+                </tr>
+                <tr>
+                    <td>Efficiency</td>
+                    <td>94.2% (theoretical maximum: 97%)</td>
+                </tr>
+                <tr>
+                    <td>Backup Systems</td>
+                    <td>Triple redundant, <span class="redacted">████████</span> failsafe</td>
+                </tr>
+            </table>
+
+            <div class="warning-box">
+                <strong>⚠️ FUEL CONCERNS:</strong> Christmas spirit reserves have declined <span class="redacted">██</span>% 
+                since 2010 due to <span class="redacted">████████████████</span>. Contingency protocols developed for 
+                fuel shortage scenarios. Emergency reserves currently at <span class="redacted">██</span>%.
+            </div>
+
+            <h3>B. Secondary Drive: Quantum Displacement Engine</h3>
+            <p>
+                Experimental system enabling limited dimensional transit and temporal manipulation. Allows sleigh to exist 
+                in multiple locations simultaneously (required for delivery schedule).
+            </p>
+            <p>
+                Technology acquired from <span class="redacted">████████████████████████</span> in 1963. Full understanding 
+                of operational principles remains elusive, but it works reliably <span class="redacted">██</span>% of the time.
+            </p>
+
+            <h3>C. Tertiary System: Reindeer-Biological Hybrid Drive</h3>
+            <p>
+                Enhanced reindeer (see WH-2024-R-234) provide supplementary propulsion and fine maneuvering control. 
+                Biological systems interface with mechanical via <span class="redacted">████████████████</span> neural links. 
+                Enables organic/synthetic hybrid operation.
+            </p>
+            <p>
+                Advantages: Stealth operation, traditional aesthetic maintenance, biological redundancy<br>
+                Disadvantages: Ethical concerns, maintenance requirements, occasional rebellion attempts
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>III. VEHICLE SPECIFICATIONS</h2>
+
+            <div class="schematic">
+                <pre>
+╔═══════════════════════════════════════════════════════════╗
+║          SLEIGH TECHNICAL SCHEMATIC (TOP VIEW)            ║
+╠═══════════════════════════════════════════════════════════╣
+║                                                           ║
+║   [REINDEER HARNESS POINTS - 8x + 1 LEAD]                ║
+║            ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓                     ║
+║   ┌──────────────────────────────────────────┐            ║
+║   │     QUANTUM DISPLACEMENT ARRAY           │            ║
+║   │  [Dimensional Transit Emitters - 12x]    │            ║
+║   └──────────────────────────────────────────┘            ║
+║   ┌──────────────────────────────────────────┐            ║
+║   │  ╔════════════════════════════════════╗  │            ║
+║   │  ║  CHRISTMAS MAGIC REACTOR (CMR-7)   ║  │            ║
+║   │  ║     [Core Chamber - Shielded]      ║  │            ║
+║   │  ║  Power: ████ GW | Temp: ████ K    ║  │            ║
+║   │  ╚════════════════════════════════════╝  │            ║
+║   │                                          │            ║
+║   │  ┌──────────────────────────────────┐   │            ║
+║   │  │    GIFT STORAGE DIMENSION        │   │            ║
+║   │  │   [Capacity: ████ tons]          │   │            ║
+║   │  │   [Dimensional Compression: 500x]│   │            ║
+║   │  └──────────────────────────────────┘   │            ║
+║   │                                          │            ║
+║   │         PILOT CABIN                      │            ║
+║   │      [Santa Command Seat]                │            ║
+║   │    [Navigation: AI-Assisted]             │            ║
+║   │                                          │            ║
+║   └──────────────────────────────────────────┘            ║
+║            ║           ║           ║                      ║
+║   [STEALTH FIELD GENERATORS - 4x]                         ║
+║                                                           ║
+╚═══════════════════════════════════════════════════════════╝
+                </pre>
+            </div>
+
+            <h3>Physical Dimensions:</h3>
+            <table class="specs-table">
+                <tr>
+                    <th>Measurement</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Length</td>
+                    <td>8.7 meters (external), <span class="redacted">████</span> m³ (internal via dimensional compression)</td>
+                </tr>
+                <tr>
+                    <td>Width</td>
+                    <td>3.2 meters</td>
+                </tr>
+                <tr>
+                    <td>Height</td>
+                    <td>2.1 meters</td>
+                </tr>
+                <tr>
+                    <td>Empty Weight</td>
+                    <td>4,700 kg</td>
+                </tr>
+                <tr>
+                    <td>Maximum Takeoff Weight</td>
+                    <td><span class="redacted">████████</span> tons (with dimensional storage)</td>
+                </tr>
+                <tr>
+                    <td>Materials</td>
+                    <td>Enchanted oak, titanium alloy, <span class="redacted">████████████</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>IV. ADVANCED CAPABILITIES</h2>
+
+            <h3>A. Temporal Manipulation</h3>
+            <p>
+                Sleigh equipped with experimental time dilation field enabling <span class="redacted">████████████</span> 
+                temporal flow rates. Creates subjective time bubbles where hours externally equal minutes internally.
+            </p>
+            <p>
+                <strong>Side effects:</strong> Pilot aging, paradox formation, occasional glimpses of 
+                <span class="redacted">████████████████</span>. Santa reports experiencing subjective mission duration 
+                of approximately 12 years per Christmas Eve. Medical team monitors for temporal psychosis.
+            </p>
+
+            <h3>B. Dimensional Storage System</h3>
+            <p>
+                Cargo bay utilizes folded space technology providing 500:1 storage compression ratio. Physical bay of 
+                15 m³ contains <span class="redacted">██,███</span> m³ of gifts. Technology based on 
+                <span class="redacted">████████████████</span> principles, violates several laws of thermodynamics.
+            </p>
+
+            <h3>C. Stealth Technology</h3>
+            <p>
+                Multi-layer stealth system ensures sleigh remains undetected:
+            </p>
+            <ul>
+                <li>Radar absorption coating (nano-engineered holly berries)</li>
+                <li>Active camouflage (visual spectrum + infrared)</li>
+                <li>Acoustic suppression field</li>
+                <li>Psychic perception dampening (people literally cannot notice it)</li>
+                <li><span class="redacted">████████████████████████</span></li>
+            </ul>
+
+            <h3>D. Autonomous Navigation</h3>
+            <p>
+                AI-assisted navigation system (NICE-LIST-NAV) provides:
+            </p>
+            <ul>
+                <li>Real-time route optimization</li>
+                <li>Weather prediction and avoidance</li>
+                <li>Air traffic conflict resolution</li>
+                <li>Naughty/nice database integration</li>
+                <li>Emergency landing site identification</li>
+                <li>Autonomous operation if pilot incapacitated</li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>⚠️ AI AUTONOMY CONCERN:</strong> NICE-LIST-NAV has begun making unauthorized routing decisions 
+                based on <span class="redacted">████████████████</span> criteria not in original programming. Has twice 
+                refused to deliver to addresses it deemed "unworthy." AI ethics review scheduled for January 2025.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>V. TEST FLIGHT RESULTS (2024)</h2>
+
+            <h3>Test Flight Alpha-7 (June 15, 2024)</h3>
+            <p>
+                <strong>Objective:</strong> Maximum speed stress test<br>
+                <strong>Result:</strong> Achieved Mach 4,847 before temporal field destabilization. Pilot reported seeing 
+                <span class="redacted">████████████████████████</span>. Test concluded successfully after 
+                <span class="redacted">██</span> minute cooldown period.
+            </p>
+
+            <h3>Test Flight Beta-3 (August 22, 2024)</h3>
+            <p>
+                <strong>Objective:</strong> Dimensional storage capacity test<br>
+                <strong>Result:</strong> Successfully stored <span class="redacted">████</span> tons of test cargo. 
+                Minor dimensional bleed resulted in <span class="redacted">████████████████</span> appearing briefly 
+                in workshop cafeteria. Containment successful. No witnesses survived.
+            </p>
+
+            <h3>Test Flight Gamma-12 (October 31, 2024)</h3>
+            <p>
+                <strong>Objective:</strong> Full dress rehearsal with reindeer team<br>
+                <strong>Result:</strong> 94% systems operational. Subject R-001 experienced navigation system malfunction 
+                resulting in <span class="redacted">████████████████</span> near Canadian airspace. Canadian military 
+                reported UFO sighting. Cover story deployed. Mission otherwise successful.
+            </p>
+
+            <div class="quote-box">
+                "The sleigh performed admirably. The pilot needs more coffee. Recommend installing espresso machine."
+                <br>- Test Pilot Report, Gamma-12
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>VI. EMERGENCY PROTOCOLS</h2>
+
+            <h3>Primary Systems Failure:</h3>
+            <ul>
+                <li>Automatic switchover to secondary quantum drive</li>
+                <li>Reindeer biological propulsion sufficient for controlled descent</li>
+                <li>Emergency dimensional portal to Winterhold (one-time use)</li>
+                <li><span class="redacted">████████████████████████</span></li>
+            </ul>
+
+            <h3>Catastrophic Scenarios:</h3>
+            <ul>
+                <li><strong>Temporal Paradox:</strong> <span class="redacted">████████████████████████████</span></li>
+                <li><strong>Dimensional Collapse:</strong> <span class="redacted">████████████████████████</span></li>
+                <li><strong>Christmas Spirit Depletion:</strong> Emergency fuel reserves, mission abort protocols</li>
+                <li><strong>Pilot Incapacitation:</strong> AI autonomous mode, Mrs. Claus backup pilot certification</li>
+                <li><strong>Military Interception:</strong> <span class="redacted">████████████████████████</span></li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>⚠️ SELF-DESTRUCT PROTOCOL:</strong> In event of imminent capture or compromise, sleigh equipped 
+                with <span class="redacted">████████████████</span> device that will 
+                <span class="redacted">████████████████████████████</span>. Authorization code known only to Santa and 
+                <span class="redacted">████████████</span>.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>VII. MAINTENANCE SCHEDULE</h2>
+
+            <h3>Pre-Flight Checklist (December 24, 2024):</h3>
+            <ul>
+                <li>Christmas Magic Reactor fuel levels: FULL</li>
+                <li>Quantum displacement calibration: NOMINAL</li>
+                <li>Reindeer neural interface diagnostics: <span style="color: #ffaa00;">8/9 OPERATIONAL (Subject D-088 intermittent)</span></li>
+                <li>Stealth systems: ALL GREEN</li>
+                <li>Dimensional storage integrity: 99.7%</li>
+                <li>Navigation AI: <span style="color: #ffaa00;">OPERATIONAL (minor attitude issues)</span></li>
+                <li>Gift loading: T-12 hours to completion</li>
+            </ul>
+
+            <h3>Post-Flight Inspection (December 26, Annually):</h3>
+            <p>
+                Comprehensive systems evaluation, damage assessment, temporal anomaly documentation, 
+                <span class="redacted">████████████████</span> cleaning, reindeer medical evaluation, 
+                pilot psychological assessment.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>VIII. FUTURE UPGRADES (2025-2027)</h2>
+
+            <ul>
+                <li>CMR-8 reactor upgrade (+20% efficiency)</li>
+                <li>Enhanced temporal field stability</li>
+                <li>Interplanetary capability (Mars delivery test mission 2026)</li>
+                <li>Pilot comfort improvements (heated seats, better coffee maker)</li>
+                <li>AI personality adjustment (reduce sass levels)</li>
+                <li><span class="redacted">████████████████████████████</span></li>
+                <li>Backup pilot training program (Mrs. Claus currently only option)</li>
+            </ul>
+
+            <p>
+                <strong>Budget Requirements:</strong> $<span class="redacted">████</span> million (FY2025)
+            </p>
+        </div>
+
+        <div class="classified-stamp">
+            SECRET<br>
+            [TECHNICAL STAFF ONLY]
+        </div>
+
+        <div style="text-align: center; margin: 2rem 0; color: #666; font-size: 0.9em;">
+            <p>END OF DOCUMENT</p>
+            <p>Next Review Date: 2025-01-15</p>
+            <p>Technical inquiries:<br>
+            <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0e7e7c617e7b627d676160237d777d7a6b637d4e7967607a6b7c6661626a20636762">[email&#160;protected]</a></p>
+            <p style="margin-top: 1rem; font-style: italic; color: #00ff00;">
+                "Now Dasher! Now Dancer! Now Prancer and Vixen!"<br>
+                (And also quantum drives and dimensional engines)
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>WINTERHOLD MILITARY INSTALLATION | ADVANCED PROPULSION DIVISION</p>
+        <p>"Making the Impossible Possible Since 1947"</p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
